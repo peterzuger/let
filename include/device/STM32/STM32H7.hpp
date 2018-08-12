@@ -1,5 +1,5 @@
 /**
- * @file    STM32H7.hpp
+ * @file    device/STM32/STM32H7.hpp
  * @author  Peter Zueger
  * @date    11.08.2018
  * @brief   STM32H7 specifics

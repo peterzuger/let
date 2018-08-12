@@ -1,5 +1,5 @@
 /**
- * @file    STM32F0.hpp
+ * @file    device/STM32/STM32F0.hpp
  * @author  Peter Zueger
  * @date    11.08.2018
  * @brief   STM32F0 specifics

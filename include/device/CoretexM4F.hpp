@@ -1,5 +1,5 @@
 /**
- * @file   CoretexM4F.hpp
+ * @file   device/CoretexM4F.hpp
  * @author Peter Zueger
  * @date   11.08.2018
  * @brief  ARM Coretex M4F device header

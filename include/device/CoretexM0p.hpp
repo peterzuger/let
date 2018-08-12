@@ -1,5 +1,5 @@
 /**
- * @file   CoretexM0p.hpp
+ * @file   device/CoretexM0p.hpp
  * @author Peter Zueger
  * @date   11.08.2018
  * @brief  ARM Coretex M0+ device header

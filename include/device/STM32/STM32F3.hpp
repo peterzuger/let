@@ -1,5 +1,5 @@
 /**
- * @file    STM32F3.hpp
+ * @file    device/STM32/STM32F3.hpp
  * @author  Peter Zueger
  * @date    11.08.2018
  * @brief   STM32F3 specifics

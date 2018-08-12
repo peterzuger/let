@@ -1,5 +1,5 @@
 /**
- * @file    STM32L4.hpp
+ * @file    device/STM32/STM32L4.hpp
  * @author  Peter Zueger
  * @date    11.08.2018
  * @brief   STM32L4 specifics
