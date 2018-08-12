@@ -172,7 +172,7 @@ namespace let{
             constexpr auto VALID        = 1 << 4; // MPU region number valid bit
 
             // RASR
-            constexpr auto ENABLE       = 1 << 0; // Region enable bit
+         // constexpr auto ENABLE       = 1 << 0; // Region enable bit
             constexpr auto B            = 1 << 16;// Bufferable bit
             constexpr auto C            = 1 << 17;// Cacheable bit
             constexpr auto S            = 1 << 18;// Shareable bit
