@@ -9,7 +9,7 @@
 
 #include <cstdint>
 
-#include "Device/Family.hpp"
+#include "device/Family.hpp"
 
 namespace let{
 
