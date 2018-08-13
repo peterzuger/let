@@ -81,6 +81,29 @@ namespace let{
 
         }
     }
+
+    namespace RNG{
+        constexpr auto RNG              = 0x50060800;
+
+        namespace R{
+            constexpr auto CR           = 0x00;   // Control register
+            constexpr auto SR           = 0x04;   // Status register
+            constexpr auto DR           = 0x08;   // Data register
+        }
+
+        namespace B{
+            // CR
+            constexpr auto IE           = 1 << 3; // Interrupt enable
+            constexpr auto RNGEN        = 1 << 2; // True random number generator enable
+
+            // SR
+            constexpr auto SEIS         = 1 << 6; // Seed error interrupt status
+            constexpr auto CEIS         = 1 << 5; // Clock error interrupt status
+            constexpr auto SECS         = 1 << 2; // Seed error current status
+            constexpr auto CECS         = 1 << 1; // Clock error current status
+            constexpr auto DRDY         = 1 << 0; // Data ready
+        }
+    }
 }
 
 #endif /* __STM32L476XX_HPP__ */
