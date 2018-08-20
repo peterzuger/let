@@ -12,23 +12,23 @@
 namespace let{
     namespace STK{
 
-        void EnableSysTickCounter(){
+        inline void EnableSysTickCounter(){
             memory<std::uint32_t>(STK+R::CTRL) |= B::ENABLE;
         }
 
-        void EnableSysTickException(){
+        inline void EnableSysTickException(){
             memory<std::uint32_t>(STK+R::CTRL) |= B::TICKINT;
         }
 
-        void SetSysTickLoad(std::uint32_t val){
+        inline void SetSysTickLoad(std::uint32_t val){
             memory<std::uint32_t>(STK+R::LOAD) = val;
         }
 
-        void ClearSysTickCurrent(){
+        inline void ClearSysTickCurrent(){
             memory<std::uint32_t>(STK+R::VAL) = 0;
         }
 
-        std::uint32_t GetSysTickCurrent(){
+        inline std::uint32_t GetSysTickCurrent(){
             return memory<std::uint32_t>(STK+R::VAL);
         }
     }
