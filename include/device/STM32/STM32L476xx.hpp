@@ -104,6 +104,132 @@ namespace let{
             constexpr auto DRDY         = 1 << 0; // Data ready
         }
     }
+
+    namespace USART{
+        constexpr auto USART1           = 0x40013800;
+        constexpr auto USART2           = 0x40004400;
+        constexpr auto USART3           = 0x40004800;
+
+        namespace R{
+            constexpr auto CR1          = 0x00;   // Control register 1
+            constexpr auto CR2          = 0x04;   // Control register 2
+            constexpr auto CR3          = 0x08;   // Control register 3
+            constexpr auto BRR          = 0x0C;   // Baud rate register
+            constexpr auto GTPR         = 0x10;   // Guard time and prescaler register
+            constexpr auto RTOR         = 0x14;   // Receiver timeout register
+            constexpr auto RQR          = 0x18;   // Request register
+            constexpr auto ISR          = 0x1C;   // Interrupt and status register
+            constexpr auto ICR          = 0x20;   // Interrupt flag clear register
+            constexpr auto RDR          = 0x24;   // Receive data register
+            constexpr auto TDR          = 0x28;   // Transmit data register
+        }
+
+        namespace B{
+            // CR1
+            constexpr auto EOBIE        = 1 << 27;// End of block interrupt enable
+            constexpr auto RTOIE        = 1 << 26;// Receiver timeout interrupt enable
+            constexpr auto OVER8        = 1 << 15;// Oversampling mode
+            constexpr auto CMIE         = 1 << 14;// Character match interrupt enable
+            constexpr auto MME          = 1 << 13;// Mute mode enable
+            constexpr auto WAKE         = 1 << 11;// Receiver wakeup method
+            constexpr auto PCE          = 1 << 10;// Parity control enable
+            constexpr auto PS           = 1 << 9; // Parity selection
+            constexpr auto PEIE         = 1 << 8; // PE interrupt enable
+            constexpr auto TXEIE        = 1 << 7; // TXE interrupt enable
+            constexpr auto TCIE         = 1 << 6; // Transmission complete interrupt enable
+            constexpr auto RXNEIE       = 1 << 5; // RXNE interrupt enable
+            constexpr auto IDLEIE       = 1 << 4; // IDLE interrupt enable
+            constexpr auto TE           = 1 << 3; // Transmitter enable
+            constexpr auto RE           = 1 << 2; // Receiver enable
+            constexpr auto UESM         = 1 << 1; // USART enable in Stop mode
+            constexpr auto UE           = 1 << 0; // USART enable
+
+            // CR2
+            constexpr auto RTOEN        = 1 << 23;// Receiver timeout enable
+            constexpr auto ABREN        = 1 << 20;// Auto baud rate enable
+            constexpr auto MSBFIRST     = 1 << 19;// Most significant bit first
+            constexpr auto DATAINV      = 1 << 18;// Binary data inversion
+            constexpr auto TXINV        = 1 << 17;// TX pin active level conversion
+            constexpr auto RXINV        = 1 << 16;// RX pin active level conversion
+            constexpr auto SWAP         = 1 << 15;// Swap TX/RX pins
+            constexpr auto LINEN        = 1 << 14;// LIN mode enable
+            constexpr auto CLKEN        = 1 << 11;// Clock enable
+            constexpr auto CPOL         = 1 << 10;// Clock polarity
+            constexpr auto CPHA         = 1 << 9; // Clock phase
+            constexpr auto LBCL         = 1 << 8; // Last bit clock pulse
+            constexpr auto LBDIE        = 1 << 6; // LIN break detection interrupt enable
+            constexpr auto LBDL         = 1 << 5; // LIN break detection length
+            constexpr auto ADDM7        = 1 << 4; // 7-bit Adress Detection/4-bit Adress Detection
+
+            // CR3
+            constexpr auto TCBGTIE      = 1 << 24;// Transmission complete before guard time interrupt enable
+            constexpr auto UCESM        = 1 << 23;// USART Clock Enable in Stop mode
+            constexpr auto WUFIE        = 1 << 22;// Wakeup from Stop mode interrupt enable
+            constexpr auto DEP          = 1 << 15;// Driver enable polartity selection
+            constexpr auto DEM          = 1 << 14;// Driver enable mode
+            constexpr auto DDRE         = 1 << 13;// DMA Disable on Reception Error
+            constexpr auto OVRDIS       = 1 << 12;// Overrun Disable
+            constexpr auto ONEBIT       = 1 << 11;// One sample bit method enable
+            constexpr auto CTSIE        = 1 << 10;// CTS interrupt enable
+            constexpr auto CTSE         = 1 << 9; // CTS enable
+            constexpr auto RTSE         = 1 << 8; // RTS enable
+            constexpr auto DMAT         = 1 << 7; // DMA enable transmitter
+            constexpr auto DMAR         = 1 << 6; // DMA enable receiver
+            constexpr auto SCEN         = 1 << 5; // Smartcard mode enable
+            constexpr auto NACK         = 1 << 4; // Smartcard NACK enable
+            constexpr auto HDSEL        = 1 << 3; // Half-duplex selection
+            constexpr auto IRLP         = 1 << 2; // IrDA low power
+            constexpr auto IREN         = 1 << 1; // IrDA mode enable
+            constexpr auto EIE          = 1 << 0; // Error interrupt enable
+
+            // RQR
+            constexpr auto TXFRQ        = 1 << 4; // Transmit data flush request
+            constexpr auto RXFRQ        = 1 << 3; // Receive data flush request
+            constexpr auto MMRQ         = 1 << 2; // Mute mode request
+            constexpr auto SBKRQ        = 1 << 1; // Send break request
+            constexpr auto ABRRQ        = 1 << 0; // Auto baud rate request
+
+            // ISR
+            constexpr auto TCBGT        = 1 << 25;// Transmission complete before guard time completion
+            constexpr auto REACK        = 1 << 22;// Receive enable acknowledge flag
+            constexpr auto TEACK        = 1 << 21;// Transmit enable acknowledge flag
+            constexpr auto WUF          = 1 << 20;// Wakeup from Stop mode flag
+            constexpr auto RWU          = 1 << 19;// Receiver wakeup from mute mode
+            constexpr auto SBKF         = 1 << 18;// Send break flag
+            constexpr auto CMF          = 1 << 17;// Character match flag
+            constexpr auto BUSY         = 1 << 16;// Busy flag
+            constexpr auto ABRF         = 1 << 15;// Auto baud rate flag
+            constexpr auto ABRE         = 1 << 14;// Auto baud rate error
+            constexpr auto EOBF         = 1 << 12;// End of block flag
+            constexpr auto RTOF         = 1 << 11;// Receiver timeout
+            constexpr auto CTS          = 1 << 10;// CTS flag
+            constexpr auto CTSIF        = 1 << 9; // CTS interrupt flag
+            constexpr auto LBDF         = 1 << 8; // LIN break detection flag
+            constexpr auto TXE          = 1 << 7; // Transmit data register empty
+            constexpr auto TC           = 1 << 6; // Transmission complete
+            constexpr auto RXNE         = 1 << 5; // Read data register not empty
+            constexpr auto IDLE         = 1 << 4; // Idle line detected
+            constexpr auto ORE          = 1 << 3; // Overrun error
+            constexpr auto NF           = 1 << 2; // START bit Noise detection flag
+            constexpr auto FE           = 1 << 1; // Framing error
+            constexpr auto PE           = 1 << 0; // Parity error
+
+            // ICR
+            constexpr auto WUCF         = 1 << 20;// Wakeup from Stop mode clear flag
+            constexpr auto CMCF         = 1 << 17;// Character match clear flag
+            constexpr auto EOBCF        = 1 << 12;// End of block clear flag
+            constexpr auto RTOCF        = 1 << 11;// Receiver timeout clear flag
+            constexpr auto CTSCF        = 1 << 9; // CTS clear flag
+            constexpr auto LBDCF        = 1 << 8; // LIN break detection clear flag
+            constexpr auto TCBGTCF      = 1 << 7; // Transmission complete before guard time clear flag
+            constexpr auto TCCF         = 1 << 6; // Transmission complete clear flag
+            constexpr auto IDLECF       = 1 << 4; // Idle line detected clear flag
+            constexpr auto ORECF        = 1 << 3; // Overrun error clear flag
+            constexpr auto NCF          = 1 << 2; // Noise detected flag
+            constexpr auto FECF         = 1 << 1; // Framing error clear flag
+            constexpr auto PECF         = 1 << 0; // Parity error clear flag
+        }
+    }
 }
 
 #endif /* __STM32L476XX_HPP__ */
