@@ -1,2 +1,36 @@
+## OS specific files
+# linux
+*~
+
+# mac OS
+.DS_Store
+.fseventsd
+.Spotlight-V100
+.Trashes
+
+
+## object files
+*.o
+*.elf
+
+# linker output
+*.map
+
+# libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# executables
+*.out
+*.hex
+
+# emacs files
 .dir-locals.el
+
+# temporary development directory
 DEV/
+
+# clang files
+.clang_complete
