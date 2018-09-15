@@ -60,6 +60,8 @@ namespace let{
          */
         template<std::uint32_t P,std::uint8_t p>
         class Pin{
+            static_assert(p <= 15, "GPIO Pin pin out of range [0 ... 15]");
+
         public:
             Pin() = default;
 
