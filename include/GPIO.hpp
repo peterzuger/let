@@ -109,18 +109,19 @@ namespace let{
 
                 switch(m){
                 case Mode::Input:
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Input << (p*2));
                     break;
 
                 case Mode::Output:
-                    memory<std::uint32_t>(P+R::MODER) |= (0b01 << (p*2));
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Output << (p*2));
                     break;
 
                 case Mode::Alternate:
-                    memory<std::uint32_t>(P+R::MODER) |= (0b10 << (p*2));
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Analog << (p*2));
                     break;
 
                 case Mode::Analog:
-                    memory<std::uint32_t>(P+R::MODER) |= (0b11 << (p*2));
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Alternate << (p*2));
                     break;
                 }
             }
@@ -137,18 +138,19 @@ namespace let{
 
                 switch(o){
                 case OSpeed::Slow:
+                    memory<std::uint32_t>(P+R::OSPEEDR) |= (B::Slow << (p*2));
                     break;
 
                 case OSpeed::Medium:
-                    memory<std::uint32_t>(P+R::OSPEEDR) |= (0b01 << (p*2));
+                    memory<std::uint32_t>(P+R::OSPEEDR) |= (B::Medium << (p*2));
                     break;
 
                 case OSpeed::Fast:
-                    memory<std::uint32_t>(P+R::OSPEEDR) |= (0b10 << (p*2));
+                    memory<std::uint32_t>(P+R::OSPEEDR) |= (B::Fast << (p*2));
                     break;
 
                 case OSpeed::High:
-                    memory<std::uint32_t>(P+R::OSPEEDR) |= (0b11 << (p*2));
+                    memory<std::uint32_t>(P+R::OSPEEDR) |= (B::High << (p*2));
                     break;
                 }
             }
@@ -158,14 +160,15 @@ namespace let{
 
                 switch(m){
                 case Pull::NoPull:
+                    memory<std::uint32_t>(P+R::PUPDR) |= (B::NoPull << (p*2));
                     break;
 
                 case Pull::Pullup:
-                    memory<std::uint32_t>(P+R::PUPDR) |= (0b01 << (p*2));
+                    memory<std::uint32_t>(P+R::PUPDR) |= (B::Pullup << (p*2));
                     break;
 
                 case Pull::Pulldown:
-                    memory<std::uint32_t>(P+R::PUPDR) |= (0b10 << (p*2));
+                    memory<std::uint32_t>(P+R::PUPDR) |= (B::Pulldown << (p*2));
                     break;
                 }
             }

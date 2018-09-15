@@ -122,6 +122,23 @@ namespace let{
         }
 
         namespace B{
+            // MODER
+            constexpr auto Input        = 0b00;   // GPIO pin input mode mask
+            constexpr auto Output       = 0b01;   // GPIO pin output mode mask
+            constexpr auto Analog       = 0b10;   // GPIO pin analog mode mask
+            constexpr auto Alternate    = 0b11;   // GPIO pin alternate mode mask
+
+            // OSPEEDR
+            constexpr auto Slow         = 0b00;   // GPIO pin speed slow
+            constexpr auto Medium       = 0b01;   // GPIO pin speed medium
+            constexpr auto Fast         = 0b10;   // GPIO pin speed fast
+            constexpr auto High         = 0b11;   // GPIO pin speed high
+
+            // PUPDR
+            constexpr auto NoPull       = 0b00;   // GPIO pin no pullup/down resistor
+            constexpr auto Pullup       = 0b01;   // GPIO pin pullup enabled
+            constexpr auto Pulldown     = 0b10;   // GPIO pin pulldown enabled
+
             // LCKR
             constexpr auto LCKK         = 1 << 16;// Lock key
         }
