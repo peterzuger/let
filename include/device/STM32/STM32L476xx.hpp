@@ -548,6 +548,68 @@ namespace let{
         }
     }
 
+    namespace SPI{
+        constexpr auto SPI1             = 0x40013000;
+        constexpr auto SPI2             = 0x40003800;
+        constexpr auto SPI3             = 0x40003C00;
+
+        namespace R{
+            constexpr auto CR1          = 0x00;   // control register 1
+            constexpr auto CR2          = 0x04;   // control register 2
+            constexpr auto SR           = 0x08;   // status register
+            constexpr auto DR           = 0x0C;   // data register
+            constexpr auto CRCPR        = 0x10;   // CRC polynomial register
+            constexpr auto RXCRCR       = 0x14;   // RX CRC register
+            constexpr auto TXCRCR       = 0x18;   // TX CRC register
+        }
+
+        namespace B{
+            // CR1
+            constexpr auto BIDIMODE     = 1 << 15;// Bidirectional data mode enable.
+            constexpr auto BIDIOE       = 1 << 14;// Output enable in bidirectional mode
+            constexpr auto CRCEN        = 1 << 13;// Hardware CRC calculation enable
+            constexpr auto CRCNEXT      = 1 << 12;// Transmit CRC next
+            constexpr auto CRCL         = 1 << 11;// CRC length
+            constexpr auto RXONLY       = 1 << 10;// Receive only mode enabled
+            constexpr auto SSM          = 1 << 9; // Software slave management
+            constexpr auto SSI          = 1 << 8; // Internal slave select
+            constexpr auto LSBFIRST     = 1 << 7; // Least signifigant bit first
+            constexpr auto SPE          = 1 << 6; // SPI enable
+            constexpr auto MSTR         = 1 << 2; // Master selection
+            constexpr auto CPOL         = 1 << 1; // Clock polarity
+            constexpr auto CPHA         = 1 << 0; // Clock phase
+
+            // CR2
+            constexpr auto LDMA_TX      = 1 << 14;// Last DMA transfer for transmission
+            constexpr auto LDMA_RX      = 1 << 13;// Last DMA transfer for reception
+            constexpr auto FRXTH        = 1 << 12;// FIFO reception threshold
+            constexpr auto TXEIE        = 1 << 7; // Tx buffer empty interrupt enable
+            constexpr auto RXNEIE       = 1 << 6; // RX buffer not empty interrupt enable
+            constexpr auto ERRIE        = 1 << 5; // Error interrupt enable
+            constexpr auto FRF          = 1 << 4; // Frame format
+            constexpr auto NSSP         = 1 << 3; // NSS pulse management
+            constexpr auto SSOE         = 1 << 2; // SS output enable
+            constexpr auto TXDMAEN      = 1 << 1; // Tx buffer DMA enable
+            constexpr auto RXDMAEN      = 1 << 0; // Rx buffer DMA enable
+
+            // SR
+            constexpr auto FRE          = 1 << 8; // Frame format error
+            constexpr auto BSY          = 1 << 7; // Busy flag
+            constexpr auto OVR          = 1 << 6; // Overrun flag
+            constexpr auto MODF         = 1 << 5; // Mode fault
+            constexpr auto CRCERR       = 1 << 4; // CRC error flag
+            constexpr auto TXE          = 1 << 1; // Transmit buffer empty
+            constexpr auto RXNE         = 1 << 0; // Receive buffer not empty
+        }
+    }
+
+    namespace I2C{
+        constexpr auto I2C1             = 0x40005400;
+        constexpr auto I2C2             = 0x40005800;
+        constexpr auto I2C3             = 0x40005C00;
+
+    }
+
     namespace USART{
         constexpr auto USART1           = 0x40013800;
         constexpr auto USART2           = 0x40004400;
