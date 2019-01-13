@@ -31,6 +31,39 @@ namespace let{
         }
     }
 
+    namespace ITM{
+        constexpr auto ITM              = 0xE0000000;
+
+        namespace R{
+            constexpr auto STIM         = 0x000;  // Stimulus Port registers 32
+            constexpr auto TER          = 0xE00;  // Trace enable register
+            constexpr auto TPR          = 0xE40;  // Trace privilege register
+            constexpr auto TCR          = 0xE80;  // Trace control register
+            constexpr auto PID4         = 0xFD0;  // Peripheral identification registers
+            constexpr auto PID5         = 0xFD4;  // "
+            constexpr auto PID6         = 0xFD8;  // "
+            constexpr auto PID7         = 0xFDC;  // "
+            constexpr auto PID0         = 0xFE0;  // "
+            constexpr auto PID1         = 0xFE4;  // "
+            constexpr auto PID2         = 0xFE8;  // "
+            constexpr auto PID3         = 0xFEC;  // "
+            constexpr auto CID0         = 0xFF0;  // Component identification registers
+            constexpr auto CID1         = 0xFF4;  // "
+            constexpr auto CID2         = 0xFF8;  // "
+            constexpr auto CID3         = 0xFFC;  // "
+        }
+
+        namespace B{
+            // TCR
+            constexpr auto ITMENA       = 1 << 0; // ITM enable
+            constexpr auto TSENA        = 1 << 1; // Enable  local timestamp generation
+            constexpr auto SYNCENA      = 1 << 2; // Enable Synchronization packet
+            constexpr auto TXENA        = 1 << 3; // Enable forwarding from the DWT to the ITM
+            constexpr auto SWOENA       = 1 << 4; // Enable asynchronous clocking for the timestamp
+            constexpr auto BUSY         = 1 << 23;// ITM busy flag
+        }
+    }
+
     namespace SCB{
         constexpr auto SCB              = 0xE000ED00;
 
