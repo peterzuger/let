@@ -16,8 +16,20 @@ namespace let{
             memory<std::uint32_t>(STK+R::CTRL) |= B::ENABLE;
         }
 
+        inline void DisableSysTickCounter(){
+            memory<std::uint32_t>(STK+R::CTRL) &= ~B::ENABLE;
+        }
+
         inline void EnableSysTickException(){
             memory<std::uint32_t>(STK+R::CTRL) |= B::TICKINT;
+        }
+
+        inline void DisableSysTickException(){
+            memory<std::uint32_t>(STK+R::CTRL) &= ~B::TICKINT;
+        }
+
+        inline bool Countflag(){
+            return memory<std::uint32_t>(STK+R::CTRL) & B::COUNTFLAG;
         }
 
         inline void SetSysTickLoad(std::uint32_t val){
