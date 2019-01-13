@@ -213,7 +213,7 @@ namespace let{
          */
         template<std::uint32_t P,std::uint16_t p>
         bool LockPort(){
-            std::uint32_t& m = memory<std::uint32_t>(P+R::LCKR);
+            volatile std::uint32_t& m = memory<std::uint32_t>(P+R::LCKR);
             std::uint32_t tmp = p | B::LCKK;
 
             m = tmp;
