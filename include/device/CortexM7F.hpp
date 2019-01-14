@@ -1,11 +1,11 @@
 /**
- * @file   device/CoretexM4F.hpp
+ * @file   device/CortexM7F.hpp
  * @author Peter Zueger
  * @date   11.08.2018
- * @brief  ARM Coretex M4F device header
+ * @brief  ARM Coretex M7F device header
  */
-#ifndef LET_DEVICE_CORETEXM4F_HPP
-#define LET_DEVICE_CORETEXM4F_HPP
+#ifndef LET_DEVICE_CORTEXM7F_HPP
+#define LET_DEVICE_CORTEXM7F_HPP
 
 namespace let{
     namespace STK{
@@ -88,10 +88,10 @@ namespace let{
 
         namespace B{
             // ACTLR
-            constexpr auto DISMCYCINT   = 1 << 0; // Disables interrupt of multi-cycle instructions
-            constexpr auto DISDEFWBUF   = 1 << 1; // Disables write buffer use during default memory map access
             constexpr auto DISFOLD      = 1 << 2; // Disables folding of IT instructions
-            constexpr auto DISOOFP      = 1 << 9; // Disable floating point instructions completing out of order with respect to integer instructions
+            constexpr auto FPEXCODIS    = 1 << 10;// Disables FPU exception outputs
+            constexpr auto DISRAMODE    = 1 << 11;// Disables dynamic read allocate mode for write-back write-allocate memory regions
+            constexpr auto DISITMATBFLUSH=1 << 12;// Disables ITM and DWT ATB flush
 
             // ICSR
             constexpr auto RETOBASE     = 1 << 11;// Return to base level indicates if there are preempted active exceptions
@@ -121,6 +121,9 @@ namespace let{
             constexpr auto DIV_0_TRP    = 1 << 4; // Enables faulting or halting when the processor SDIV or UDIV 0s
             constexpr auto BFHFNMIGN    = 1 << 8; // Enables handlers with priority -1 or -2 to ignore data bus faults
             constexpr auto STKALIGN     = 1 << 9; // Always one -> indicates 8byte stack alignment on exception entry
+            constexpr auto DC           = 1 << 16;// Enable L1 data cache
+            constexpr auto IC           = 1 << 17;// Enable L1 instruction cache
+            constexpr auto BP           = 1 << 18;// Always reads as 1, indicates that branch prediction is enabled
 
             // SHCSR
             constexpr auto MEMFAULTACT  = 1 << 0; // Memory management fault exception active bit, reads as 1 if exception is active
@@ -169,13 +172,13 @@ namespace let{
         constexpr auto NVIC             = 0xE000E100;
 
         namespace R{
-            constexpr auto ISER         = 0x000;  // Interrupt set enable registers    - 3
-            constexpr auto ICER         = 0x080;  // Interrupt clear enable registers  - 3
-            constexpr auto ISPR         = 0x100;  // Interrupt set pending registers   - 3
-            constexpr auto ICPR         = 0x180;  // Interrupt clear pending registers - 3
-            constexpr auto IABR         = 0x200;  // Interrupt active bit registers    - 3
+            constexpr auto ISER         = 0x000;  // Interrupt set enable registers    - 8
+            constexpr auto ICER         = 0x080;  // Interrupt clear enable registers  - 8
+            constexpr auto ISPR         = 0x100;  // Interrupt set pending registers   - 8
+            constexpr auto ICPR         = 0x180;  // Interrupt clear pending registers - 8
+            constexpr auto IABR         = 0x200;  // Interrupt active bit registers    - 8
 
-            constexpr auto IPR          = 0x300;  // Interrupt priority registers      - 21
+            constexpr auto IPR          = 0x300;  // Interrupt priority registers      - 60
 
             constexpr auto STIR         = 0xE00;  // Software trigger interrupt register
         }
@@ -205,7 +208,7 @@ namespace let{
             constexpr auto VALID        = 1 << 4; // MPU region number valid bit
 
             // RASR
-         // constexpr auto ENABLE       = 1 << 0; // Region enable bit
+            constexpr auto ENABLE       = 1 << 0; // Region enable bit
             constexpr auto B            = 1 << 16;// Bufferable bit
             constexpr auto C            = 1 << 17;// Cacheable bit
             constexpr auto S            = 1 << 18;// Shareable bit
@@ -261,4 +264,4 @@ namespace let{
     }
 }
 
-#endif /* LET_DEVICE_CORETEXM4F_HPP */
+#endif /* LET_DEVICE_CORTEXM7F_HPP */

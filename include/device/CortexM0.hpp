@@ -1,11 +1,11 @@
 /**
- * @file   device/CoretexM0.hpp
+ * @file   device/CortexM0.hpp
  * @author Peter Zueger
  * @date   11.08.2018
  * @brief  ARM Coretex M0 device header
  */
-#ifndef LET_DEVICE_CORETEXM0_HPP
-#define LET_DEVICE_CORETEXM0_HPP
+#ifndef LET_DEVICE_CORTEXM0_HPP
+#define LET_DEVICE_CORTEXM0_HPP
 
 namespace let{
     namespace STK{
@@ -84,4 +84,4 @@ namespace let{
     }
 }
 
-#endif /* LET_DEVICE_CORETEXM0_HPP */
+#endif /* LET_DEVICE_CORTEXM0_HPP */

@@ -1,11 +1,11 @@
 /**
- * @file   device/CoretexM7F.hpp
+ * @file   device/CortexM3.hpp
  * @author Peter Zueger
  * @date   11.08.2018
- * @brief  ARM Coretex M7F device header
+ * @brief  ARM Coretex M3 device header
  */
-#ifndef LET_DEVICE_CORETEXM7F_HPP
-#define LET_DEVICE_CORETEXM7F_HPP
+#ifndef LET_DEVICE_CORTEXM3_HPP
+#define LET_DEVICE_CORTEXM3_HPP
 
 namespace let{
     namespace STK{
@@ -31,39 +31,6 @@ namespace let{
         }
     }
 
-    namespace ITM{
-        constexpr auto ITM              = 0xE0000000;
-
-        namespace R{
-            constexpr auto STIM         = 0x000;  // Stimulus Port registers 32
-            constexpr auto TER          = 0xE00;  // Trace enable register
-            constexpr auto TPR          = 0xE40;  // Trace privilege register
-            constexpr auto TCR          = 0xE80;  // Trace control register
-            constexpr auto PID4         = 0xFD0;  // Peripheral identification registers
-            constexpr auto PID5         = 0xFD4;  // "
-            constexpr auto PID6         = 0xFD8;  // "
-            constexpr auto PID7         = 0xFDC;  // "
-            constexpr auto PID0         = 0xFE0;  // "
-            constexpr auto PID1         = 0xFE4;  // "
-            constexpr auto PID2         = 0xFE8;  // "
-            constexpr auto PID3         = 0xFEC;  // "
-            constexpr auto CID0         = 0xFF0;  // Component identification registers
-            constexpr auto CID1         = 0xFF4;  // "
-            constexpr auto CID2         = 0xFF8;  // "
-            constexpr auto CID3         = 0xFFC;  // "
-        }
-
-        namespace B{
-            // TCR
-            constexpr auto ITMENA       = 1 << 0; // ITM enable
-            constexpr auto TSENA        = 1 << 1; // Enable  local timestamp generation
-            constexpr auto SYNCENA      = 1 << 2; // Enable Synchronization packet
-            constexpr auto TXENA        = 1 << 3; // Enable forwarding from the DWT to the ITM
-            constexpr auto SWOENA       = 1 << 4; // Enable asynchronous clocking for the timestamp
-            constexpr auto BUSY         = 1 << 23;// ITM busy flag
-        }
-    }
-
     namespace SCB{
         constexpr auto SCB              = 0xE000ED00;
 
@@ -83,15 +50,13 @@ namespace let{
             constexpr auto HFSR         = 0x2C;   // HardFault status register
             constexpr auto MMAR         = 0x34;   // MemoryManagement fault address register
             constexpr auto BFAR         = 0x38;   // BusFault address register
-            constexpr auto AFSR         = 0x3C;   // Auxiliary fault status register
         }
 
         namespace B{
             // ACTLR
+            constexpr auto DISMCYCINT   = 1 << 0; // Disables interrupt of multi-cycle instructions
+            constexpr auto DISDEFWBUF   = 1 << 1; // Disables write buffer use during default memory map access
             constexpr auto DISFOLD      = 1 << 2; // Disables folding of IT instructions
-            constexpr auto FPEXCODIS    = 1 << 10;// Disables FPU exception outputs
-            constexpr auto DISRAMODE    = 1 << 11;// Disables dynamic read allocate mode for write-back write-allocate memory regions
-            constexpr auto DISITMATBFLUSH=1 << 12;// Disables ITM and DWT ATB flush
 
             // ICSR
             constexpr auto RETOBASE     = 1 << 11;// Return to base level indicates if there are preempted active exceptions
@@ -115,15 +80,12 @@ namespace let{
             constexpr auto SEVEONPEND   = 1 << 4; // Send Event on Pending bit
 
             // CCR
-            constexpr auto NONBASETHRDENA= 1 << 0;// Configures how the processor enters Thread mode
-            constexpr auto USERSETMPEND = 1 << 1; // Enables unpriviledged software access to the STIR
+            constexpr auto NONBASETHRDENA= 1 << 0;// not documented
+            constexpr auto USERSETMPEND = 1 << 1; // not documented
             constexpr auto UNALIGN_TRP  = 1 << 3; // Always one -> all unaligned accesses generate a HardFault
-            constexpr auto DIV_0_TRP    = 1 << 4; // Enables faulting or halting when the processor SDIV or UDIV 0s
-            constexpr auto BFHFNMIGN    = 1 << 8; // Enables handlers with priority -1 or -2 to ignore data bus faults
+            constexpr auto DIV_0_TRP    = 1 << 4; // not documented
+            constexpr auto BFHFNMIGN    = 1 << 8; // not documented
             constexpr auto STKALIGN     = 1 << 9; // Always one -> indicates 8byte stack alignment on exception entry
-            constexpr auto DC           = 1 << 16;// Enable L1 data cache
-            constexpr auto IC           = 1 << 17;// Enable L1 instruction cache
-            constexpr auto BP           = 1 << 18;// Always reads as 1, indicates that branch prediction is enabled
 
             // SHCSR
             constexpr auto MEMFAULTACT  = 1 << 0; // Memory management fault exception active bit, reads as 1 if exception is active
@@ -146,14 +108,12 @@ namespace let{
             constexpr auto DACCVIOL     = 1 << 1; // Data access violation flag
             constexpr auto MUNSTKERR    = 1 << 3; // Memory manager fault on unstacking for return from exception
             constexpr auto MSTKERR      = 1 << 4; // Memory manager fault on stacking for exception entry
-            constexpr auto MLSPERR      = 1 << 5; // MemManage fault during floating point lazy state preservation
             constexpr auto MMARVALID    = 1 << 7; // Memory management Fault address register valid flag
             constexpr auto IBUSERR      = 1 << 8; // Instruction bus error
             constexpr auto PRECISERR    = 1 << 9; // Precise data bus error
             constexpr auto IMPRECISERR  = 1 << 10;// Imprecise data bus error
             constexpr auto UNSTKERR     = 1 << 11;// Bus fault on unstacking for a return from exception
             constexpr auto STKERR       = 1 << 12;// Bus fault on stacking for exception entry
-            constexpr auto LSPERR       = 1 << 13;// Bus fault on floating point lazy state preservation
             constexpr auto BFARVALID    = 1 << 15;// Bus fault Address register valid flag
             constexpr auto UNDEFINSTR   = 1 << 16;// Undefined instruction usage fault
             constexpr auto INVSTATE     = 1 << 17;// Invalid state usage fault
@@ -172,13 +132,13 @@ namespace let{
         constexpr auto NVIC             = 0xE000E100;
 
         namespace R{
-            constexpr auto ISER         = 0x000;  // Interrupt set enable registers    - 8
-            constexpr auto ICER         = 0x080;  // Interrupt clear enable registers  - 8
-            constexpr auto ISPR         = 0x100;  // Interrupt set pending registers   - 8
-            constexpr auto ICPR         = 0x180;  // Interrupt clear pending registers - 8
-            constexpr auto IABR         = 0x200;  // Interrupt active bit registers    - 8
+            constexpr auto ISER         = 0x000;  // Interrupt set enable registers    - 3
+            constexpr auto ICER         = 0x080;  // Interrupt clear enable registers  - 3
+            constexpr auto ISPR         = 0x100;  // Interrupt set pending registers   - 3
+            constexpr auto ICPR         = 0x180;  // Interrupt clear pending registers - 3
+            constexpr auto IABR         = 0x200;  // Interrupt active bit registers    - 3
 
-            constexpr auto IPR          = 0x300;  // Interrupt priority registers      - 60
+            constexpr auto IPR          = 0x300;  // Interrupt priority registers      - 21
 
             constexpr auto STIR         = 0xE00;  // Software trigger interrupt register
         }
@@ -215,53 +175,6 @@ namespace let{
             constexpr auto XN           = 1 << 28;// Instruction access disable bit
         }
     }
-
-    namespace FPU{
-        constexpr auto FPU              = 0xE000ED88;
-
-        namespace R{
-            constexpr auto CPACR        = 0x000;  // Coprocessor access control register
-            constexpr auto FPCCR        = 0x1AC;  // Floating-point context control register
-            constexpr auto FPCAR        = 0x1B0;  // Floating-point context address register
-          //constexpr auto FPSCR;              // Floating-point status control register
-          //unsigned int __builtin_arm_get_fpscr ();
-          //void __builtin_arm_set_fpscr (unsigned int);
-            constexpr auto FPDSCR       = 0x1B4;  // Floating-point default status control register
-        }
-
-        namespace B{
-            // FPCCR
-            constexpr auto LSPACT       = 1 << 0; // Lazy stack preservation active
-            constexpr auto USER         = 1 << 1; // privilege indication bit
-            constexpr auto THREAD       = 1 << 3; // Mode indication bit (1 = thread mode)
-            constexpr auto HFRDY        = 1 << 4; // HardFault ready flag
-            constexpr auto MMRDY        = 1 << 5; // MemManage enable bit
-            constexpr auto BFRDY        = 1 << 6; // Bus fault ready bit
-            constexpr auto MONRDY       = 1 << 8; // DebugMonitor ready bit
-            constexpr auto LSPEN        = 1 << 30;// Enable automatic lazy state preservation for floating-point context
-            constexpr auto ASPEN        = 1 << 31;// Enable CONTROL.FPCA setting on execution of a floating point instruction
-
-            // FPSCR
-            constexpr auto IOC          = 1 << 0; // Invalid Operation cumulative exception bit
-            constexpr auto DZC          = 1 << 1; // Division by zero cumulative exception bit
-            constexpr auto OFC          = 1 << 2; // Overflow cumulative exception bit
-            constexpr auto UFC          = 1 << 3; // Underflow cumulative exception bit
-            constexpr auto IXC          = 1 << 4; // Inexact cumulative exception bit
-            constexpr auto IDC          = 1 << 7; // Input Denormal cumulative exception bit
-            constexpr auto FZ           = 1 << 24;// Flush-to-zero mode control bit
-            constexpr auto DN           = 1 << 25;// Default NaN mode control bit
-            constexpr auto AHP          = 1 << 26;// Alternative half-precision control bit
-            constexpr auto V            = 1 << 28;// Overflow condition code flag
-            constexpr auto C            = 1 << 29;// Carry condition code flag
-            constexpr auto Z            = 1 << 30;// Zero condition code flag
-            constexpr auto N            = 1 << 31;// Negative condition code flag
-
-            // FPDSCR
-          //constexpr auto FZ           = 1 << 24;// Default value for FPSCR.FZ
-          //constexpr auto DN           = 1 << 25;// Default value for FPSCR.DN
-          //constexpr auto AHP          = 1 << 26;// Default value for FPSRC.AHP
-        }
-    }
 }
 
-#endif /* LET_DEVICE_CORETEXM7F_HPP */
+#endif /* LET_DEVICE_CORTEXM3_HPP */
