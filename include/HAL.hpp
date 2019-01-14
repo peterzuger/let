@@ -4,8 +4,8 @@
  * @date   31.07.2018
  * @brief  Hardware Abstraction Layer common
  */
-#ifndef __HAL_HPP__
-#define __HAL_HPP__
+#ifndef LET_HAL_HPP
+#define LET_HAL_HPP
 
 #include <cstdint>
 
@@ -42,4 +42,4 @@ namespace let{
     };
 }
 
-#endif /* __HAL_HPP__ */
+#endif /* LET_HAL_HPP */

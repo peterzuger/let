@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32F3 specifics
  */
-#ifndef __STM32F3_HPP__
-#define __STM32F3_HPP__
+#ifndef LET_DEVICE_STM32_STM32F3_HPP
+#define LET_DEVICE_STM32_STM32F3_HPP
 
 #if   defined(STM32F301x8) /* STM32F301K6, STM32F301K8, STM32F301C6, STM32F301C8, STM32F301R6 and STM32F301R8 Devices */
 # include "STM32F301x8.hpp"
@@ -39,4 +39,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32F3_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32F3_HPP */

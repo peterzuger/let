@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32F0 specifics
  */
-#ifndef __STM32F0_HPP__
-#define __STM32F0_HPP__
+#ifndef LET_DEVICE_STM32_STM32F0_HPP
+#define LET_DEVICE_STM32_STM32F0_HPP
 
 #if   defined(STM32F030x6) /* STM32F030x4, STM32F030x6 Devices (STM32F030xx microcontrollers where the Flash memory ranges between 16 and 32 Kbytes)              */
 # include "STM32F030x6.hpp"
@@ -43,4 +43,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32F0_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32F0_HPP */

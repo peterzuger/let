@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  ARM Coretex M3 device header
  */
-#ifndef __CORETEXM3_HPP__
-#define __CORETEXM3_HPP__
+#ifndef LET_DEVICE_CORETEXM3_HPP
+#define LET_DEVICE_CORETEXM3_HPP
 
 namespace let{
     namespace STK{
@@ -177,4 +177,4 @@ namespace let{
     }
 }
 
-#endif /* __CORETEXM3_HPP__ */
+#endif /* LET_DEVICE_CORETEXM3_HPP */

@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32L1 specifics
  */
-#ifndef __STM32L1_HPP__
-#define __STM32L1_HPP__
+#ifndef LET_DEVICE_STM32_STM32L1_HPP
+#define LET_DEVICE_STM32_STM32L1_HPP
 
 #if   defined(STM32L100xB) /* STM32L100C6, STM32L100R and STM32L100RB Devices */
 # include "STM32L100xB.hpp"
@@ -55,4 +55,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32L1_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32L1_HPP */

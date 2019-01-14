@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32F4 specifics
  */
-#ifndef __STM32F4_HPP__
-#define __STM32F4_HPP__
+#ifndef LET_DEVICE_STM32_STM32F4_HPP
+#define LET_DEVICE_STM32_STM32F4_HPP
 
 #if   defined(STM32F401xC) /* STM32F401CB, STM32F401CC, STM32F401RB, STM32F401RC, STM32F401VB and STM32F401VC Devices */
 # include "STM32F401xC.hpp"
@@ -57,4 +57,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32F4_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32F4_HPP */

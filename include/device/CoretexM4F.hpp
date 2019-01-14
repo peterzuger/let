@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  ARM Coretex M4F device header
  */
-#ifndef __CORETEXM4F_HPP__
-#define __CORETEXM4F_HPP__
+#ifndef LET_DEVICE_CORETEXM4F_HPP
+#define LET_DEVICE_CORETEXM4F_HPP
 
 namespace let{
     namespace STK{
@@ -261,4 +261,4 @@ namespace let{
     }
 }
 
-#endif /* __CORETEXM4F_HPP__ */
+#endif /* LET_DEVICE_CORETEXM4F_HPP */

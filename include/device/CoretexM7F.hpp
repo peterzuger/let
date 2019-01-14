@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  ARM Coretex M7F device header
  */
-#ifndef __CORETEXM7F_HPP__
-#define __CORETEXM7F_HPP__
+#ifndef LET_DEVICE_CORETEXM7F_HPP
+#define LET_DEVICE_CORETEXM7F_HPP
 
 namespace let{
     namespace STK{
@@ -264,4 +264,4 @@ namespace let{
     }
 }
 
-#endif /* __CORETEXM7F_HPP__ */
+#endif /* LET_DEVICE_CORETEXM7F_HPP */

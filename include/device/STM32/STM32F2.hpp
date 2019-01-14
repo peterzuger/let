@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32F2 specifics
  */
-#ifndef __STM32F2_HPP__
-#define __STM32F2_HPP__
+#ifndef LET_DEVICE_STM32_STM32F2_HPP
+#define LET_DEVICE_STM32_STM32F2_HPP
 
 #if   defined(STM32F205xx) /* STM32F205xx Devices */
 # include "STM32F205xx.hpp"
@@ -19,4 +19,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32F2_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32F2_HPP */

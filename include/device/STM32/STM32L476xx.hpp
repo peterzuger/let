@@ -4,8 +4,8 @@
  * @date   12.08.2018
  * @brief  STM32L476 register offsets
  */
-#ifndef __STM32L476XX_HPP__
-#define __STM32L476XX_HPP__
+#ifndef LET_DEVICE_STM32_STM32L476XX_HPP
+#define LET_DEVICE_STM32_STM32L476XX_HPP
 
 namespace let{
     namespace DMA{
@@ -737,4 +737,4 @@ namespace let{
     }
 }
 
-#endif /* __STM32L476XX_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32L476XX_HPP */

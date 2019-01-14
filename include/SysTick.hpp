@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  SysTick timer abstraction
  */
-#ifndef __SYSTICK_HPP__
-#define __SYSTICK_HPP__
+#ifndef LET_SYSTICK_HPP
+#define LET_SYSTICK_HPP
 
 #include "HAL.hpp"
 
@@ -46,4 +46,4 @@ namespace let{
     }
 }
 
-#endif /* __SYSTICK_HPP__ */
+#endif /* LET_SYSTICK_HPP */

@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32F7 specifics
  */
-#ifndef __STM32F7_HPP__
-#define __STM32F7_HPP__
+#ifndef LET_DEVICE_STM32_STM32F7_HPP
+#define LET_DEVICE_STM32_STM32F7_HPP
 
 #if   defined(STM32F722xx) /* STM32F722xx Devices */
 # include "STM32F722xx.hpp"
@@ -35,4 +35,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32F7_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32F7_HPP */

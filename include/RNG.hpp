@@ -4,8 +4,8 @@
  * @date   12.08.2018
  * @brief  Random Number Generator abstraction
  */
-#ifndef __RNG_HPP__
-#define __RNG_HPP__
+#ifndef LET_RNG_HPP
+#define LET_RNG_HPP
 
 #include "HAL.hpp"
 
@@ -54,4 +54,4 @@ namespace let{
     }
 }
 
-#endif /* __RNG_HPP__ */
+#endif /* LET_RNG_HPP */

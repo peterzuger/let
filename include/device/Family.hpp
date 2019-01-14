@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  Device Family Selection
  */
-#ifndef __FAMILY_HPP__
-#define __FAMILY_HPP__
+#ifndef LET_DEVICE_FAMILY_HPP
+#define LET_DEVICE_FAMILY_HPP
 
 #if defined(STM32L0)
 # include "STM32/STM32L0.hpp" // Coretex-M0+
@@ -41,4 +41,4 @@
 # error Family not defined
 #endif /* defined(STM32xx) */
 
-#endif /* __FAMILY_HPP__ */
+#endif /* LET_DEVICE_FAMILY_HPP */

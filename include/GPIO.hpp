@@ -4,8 +4,8 @@
  * @date   12.08.2017
  * @brief  General Purpose Input / Output abstraction
  */
-#ifndef __GPIO_HPP__
-#define __GPIO_HPP__
+#ifndef LET_GPIO_HPP
+#define LET_GPIO_HPP
 
 #include "HAL.hpp"
 
@@ -225,4 +225,4 @@ namespace let{
     }
 }
 
-#endif /* __GPIO_HPP__ */
+#endif /* LET_GPIO_HPP */

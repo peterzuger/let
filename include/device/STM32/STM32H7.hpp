@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32H7 specifics
  */
-#ifndef __STM32H7_HPP__
-#define __STM32H7_HPP__
+#ifndef LET_DEVICE_STM32_STM32H7_HPP
+#define LET_DEVICE_STM32_STM32H7_HPP
 
 #if   defined(STM32H743xx) /* STM32H743xx Devices */
 # include "STM32H743xx.hpp"
@@ -15,4 +15,4 @@
 # else Device not defined
 #endif
 
-#endif /* __STM32H7_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32H7_HPP */

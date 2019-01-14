@@ -4,8 +4,8 @@
  * @date   11.08.2018
  * @brief  ARM Coretex M0+ device header
  */
-#ifndef __CORETEXM0P_HPP__
-#define __CORETEXM0P_HPP__
+#ifndef LET_DEVICE_CORETEXM0P_HPP
+#define LET_DEVICE_CORETEXM0P_HPP
 
 namespace let{
     namespace STK{
@@ -122,4 +122,4 @@ namespace let{
     }
 }
 
-#endif /* __CORETEXM0P_HPP__ */
+#endif /* LET_DEVICE_CORETEXM0P_HPP */

@@ -4,8 +4,8 @@
  * @date    11.08.2018
  * @brief   STM32L4 specifics
  */
-#ifndef __STM32L4_HPP__
-#define __STM32L4_HPP__
+#ifndef LET_DEVICE_STM32_STM32L4_HPP
+#define LET_DEVICE_STM32_STM32L4_HPP
 
 #if   defined(STM32L431xx) /* STM32L431xx Devices */
 # include "STM32L431xx.hpp"
@@ -53,4 +53,4 @@
 # error Device not defined
 #endif
 
-#endif /* __STM32L4_HPP__ */
+#endif /* LET_DEVICE_STM32_STM32L4_HPP */
