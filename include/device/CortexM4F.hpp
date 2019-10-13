@@ -1,6 +1,6 @@
 /**
- * @file   device/CortexM4F.hpp
- * @author Peter Zueger
+ * @file   let/include/device/CortexM4F.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  ARM Coretex M4F device header
  */

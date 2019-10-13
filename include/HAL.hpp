@@ -1,6 +1,6 @@
 /**
- * @file   HAL.hpp
- * @author Peter Zueger
+ * @file   let/include/HAL.hpp
+ * @author Peter Züger
  * @date   31.07.2018
  * @brief  Hardware Abstraction Layer common
  */

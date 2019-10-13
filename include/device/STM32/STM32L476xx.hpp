@@ -1,6 +1,6 @@
 /**
- * @file   device/STM32/STM32L476xx.hpp
- * @author Peter Zueger
+ * @file   let/include/device/STM32/STM32L476xx.hpp
+ * @author Peter Züger
  * @date   12.08.2018
  * @brief  STM32L476 register offsets
  */

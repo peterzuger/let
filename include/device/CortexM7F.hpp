@@ -1,6 +1,6 @@
 /**
- * @file   device/CortexM7F.hpp
- * @author Peter Zueger
+ * @file   let/include/device/CortexM7F.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  ARM Coretex M7F device header
  */

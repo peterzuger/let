@@ -1,6 +1,6 @@
 /**
- * @file   device/CortexM0.hpp
- * @author Peter Zueger
+ * @file   let/include/device/CortexM0.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  ARM Coretex M0 device header
  */

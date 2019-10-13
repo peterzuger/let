@@ -1,6 +1,6 @@
 /**
- * @file   SysTick.hpp
- * @author Peter Zueger
+ * @file   let/include/SysTick.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  SysTick timer abstraction
  */

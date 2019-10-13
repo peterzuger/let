@@ -1,8 +1,8 @@
 /**
- * @file    device/STM32/STM32F1.hpp
- * @author  Peter Zueger
- * @date    11.08.2018
- * @brief   STM32F1 specifics
+ * @file   let/include/device/STM32/STM32F1.hpp
+ * @author Peter Züger
+ * @date   11.08.2018
+ * @brief  STM32F1 specifics
  */
 #ifndef LET_DEVICE_STM32_STM32F1_HPP
 #define LET_DEVICE_STM32_STM32F1_HPP

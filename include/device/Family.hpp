@@ -1,6 +1,6 @@
 /**
- * @file   device/Family.hpp
- * @author Peter Zueger
+ * @file   let/include/device/Family.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  Device Family Selection
  */

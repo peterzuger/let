@@ -1,6 +1,6 @@
 /**
- * @file   device/CortexM3.hpp
- * @author Peter Zueger
+ * @file   let/include/device/CortexM3.hpp
+ * @author Peter Züger
  * @date   11.08.2018
  * @brief  ARM Coretex M3 device header
  */

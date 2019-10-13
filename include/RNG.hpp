@@ -1,6 +1,6 @@
 /**
- * @file   RNG.hpp
- * @author Peter Zueger
+ * @file   let/include/RNG.hpp
+ * @author Peter Züger
  * @date   12.08.2018
  * @brief  Random Number Generator abstraction
  */

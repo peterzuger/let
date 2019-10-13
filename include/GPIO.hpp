@@ -1,6 +1,6 @@
 /**
- * @file   GPIO.hpp
- * @author Peter Zueger
+ * @file   let/include/GPIO.hpp
+ * @author Peter Züger
  * @date   12.08.2017
  * @brief  General Purpose Input / Output abstraction
  */
