@@ -23,6 +23,7 @@
 #define LET_GPIO_HPP
 
 #include "HAL.hpp"
+#include "device/device.hpp"
 
 namespace let{
     namespace GPIO{

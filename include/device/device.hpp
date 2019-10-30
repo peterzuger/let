@@ -1,5 +1,5 @@
 /**
- * @file   let/include/device/Family.hpp
+ * @file   let/include/device/device.hpp
  * @author Peter Züger
  * @date   11.08.2018
  * @brief  Device Family Selection
@@ -19,8 +19,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef LET_DEVICE_FAMILY_HPP
-#define LET_DEVICE_FAMILY_HPP
+#ifndef LET_DEVICE_DEVICE_HPP
+#define LET_DEVICE_DEVICE_HPP
 
 #if defined(STM32L0)
 # include "STM32/STM32L0.hpp" // Coretex-M0+
@@ -56,4 +56,4 @@
 # error Family not defined
 #endif /* defined(STM32xx) */
 
-#endif /* LET_DEVICE_FAMILY_HPP */
+#endif /* LET_DEVICE_DEVICE_HPP */

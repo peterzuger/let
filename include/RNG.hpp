@@ -23,6 +23,7 @@
 #define LET_RNG_HPP
 
 #include "HAL.hpp"
+#include "device/device.hpp"
 
 namespace let{
     namespace RNG{
