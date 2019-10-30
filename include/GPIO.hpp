@@ -211,9 +211,15 @@ namespace let{
          * @param  f alternate function to be configured
          * @return true on success
          */
-        void AlternateFunction(const std::uint8_t f){
-            Pin<P,p>(Mode::Alternate).AlternateFunction(f);
         template<std::uint32_t P, std::uint8_t p>
+        Pin<P, p> AlternateFunction(const std::uint8_t f){
+            Pin<P, p> pin;
+            pin.mode(Mode::Alternate);
+            pin.OutputType(OType::PushPull);
+            pin.PullUpDown(Pull::NoPull);
+            pin.OutputSpeed(OSpeed::High);
+            pin.AlternateFunction(f);
+            return pin;
         }
 
         /**
