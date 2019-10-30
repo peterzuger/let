@@ -134,11 +134,11 @@ namespace let{
                     break;
 
                 case Mode::Alternate:
-                    memory<std::uint32_t>(P+R::MODER) |= (B::Analog << (p*2));
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Alternate << (p*2));
                     break;
 
                 case Mode::Analog:
-                    memory<std::uint32_t>(P+R::MODER) |= (B::Alternate << (p*2));
+                    memory<std::uint32_t>(P+R::MODER) |= (B::Analog << (p*2));
                     break;
                 }
             }
