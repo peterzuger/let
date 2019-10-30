@@ -27,7 +27,6 @@
 
 namespace let{
     namespace STK{
-
         inline void EnableSysTickCounter(){
             memory<std::uint32_t>(STK+R::CTRL) |= B::ENABLE;
         }

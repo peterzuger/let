@@ -27,7 +27,6 @@
 
 namespace let{
     namespace GPIO{
-
         /**
          * GPIO pin modes
          */
@@ -74,7 +73,7 @@ namespace let{
          * @tparam P GPIO Port e.g. let::GPIO::GPIOA
          * @tparam p GPIO pin  e.g. 3
          */
-        template<std::uint32_t P,std::uint8_t p>
+        template<std::uint32_t P, std::uint8_t p>
         class Pin{
             static_assert(p <= 15, "GPIO Pin pin out of range [0 ... 15]");
 
@@ -85,7 +84,7 @@ namespace let{
                 mode(m);
             }
 
-            Pin(Mode m,OType o){
+            Pin(Mode m, OType o){
                 mode(m);
                 OutputType(o);
             }
@@ -212,9 +211,9 @@ namespace let{
          * @param  f alternate function to be configured
          * @return true on success
          */
-        template<std::uint32_t P,std::uint8_t p>
         void AlternateFunction(const std::uint8_t f){
             Pin<P,p>(Mode::Alternate).AlternateFunction(f);
+        template<std::uint32_t P, std::uint8_t p>
         }
 
         /**
@@ -227,7 +226,7 @@ namespace let{
          * @tparam pins wich pins in Port to lock
          * @return true on success
          */
-        template<std::uint32_t P,std::uint16_t p>
+        template<std::uint32_t P, std::uint16_t p>
         bool LockPort(){
             volatile std::uint32_t& m = memory<std::uint32_t>(P+R::LCKR);
             std::uint32_t tmp = p | B::LCKK;

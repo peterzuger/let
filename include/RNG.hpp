@@ -27,7 +27,6 @@
 
 namespace let{
     namespace RNG{
-
         template<std::uint32_t A>
         class RandomNumberGenerator{
         public:
@@ -63,6 +62,7 @@ namespace let{
             void Enable(){
                 memory<std::uint32_t>(A+R::CR) |= B::RNGEN;
             }
+
             void Disable(){
                 memory<std::uint32_t>(A+R::CR) &= ~B::RNGEN;
             }
