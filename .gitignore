@@ -25,12 +25,3 @@
 # executables
 *.out
 *.hex
-
-# emacs files
-.dir-locals.el
-
-# temporary development directory
-DEV/
-
-# clang files
-.clang_complete
