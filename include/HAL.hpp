@@ -23,8 +23,7 @@
 #define LET_HAL_HPP
 
 #include <cstdint>
-
-#include "device/Family.hpp"
+#include <cstddef>
 
 namespace let{
     template<typename T>
