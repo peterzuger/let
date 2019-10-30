@@ -27,9 +27,8 @@
 #include "device/Family.hpp"
 
 namespace let{
-
     template<typename T>
-    volatile T &memory(const std::uint32_t loc){
+    volatile T &memory(const std::size_t loc){
         return *reinterpret_cast<T*>(loc);
     }
 
@@ -37,17 +36,21 @@ namespace let{
         return 1 << i;
     }
 
-    template<typename T,std::uint32_t A>
+    template<typename T, std::size_t A>
     struct read_only{
-        operator T()const volatile{return memory<T>(A);}
+        operator T()const volatile{
+            return memory<T>(A);
+        }
     };
 
-    template<typename T,std::uint32_t A>
+    template<typename T, std::size_t A>
     struct write_only{
-        void operator =(const std::uint32_t v)const volatile{memory<T>(A) = v;}
+        void operator =(const std::size_t v)const volatile{
+            memory<T>(A) = v;
+        }
     };
 
-    template<typename T,std::uint32_t A>
+    template<typename T,std::size_t A>
     struct reg:
         public read_only<T, A>,
         public write_only<T, A>{
