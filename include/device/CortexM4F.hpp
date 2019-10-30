@@ -123,6 +123,7 @@ namespace let{
             constexpr auto SYSRESETREQ  = 1 << 2; // System reset request
             constexpr auto ENDIANES     = 1 << 15;// reads as 0 --> Little-endian
             //   31:16                            // must be 0x5FA on a write
+            constexpr auto VECTKEY      = 0x5FA<<16;// Register key
 
             // SCR
             constexpr auto SLEEPONEXIT  = 1 << 1; // Disable main loop Interrupts / Exceptions only
