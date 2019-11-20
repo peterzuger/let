@@ -64,6 +64,16 @@ namespace let{
                 return get();
             }
 
+            static std::uint32_t min()noexcept{
+                return 0;
+            }
+
+            static std::uint32_t max()noexcept{
+                return 0xFFFFFFFF;
+            }
+
+            double entropy()const noexcept{
+                return 0.0;
             }
 
             void Enable()noexcept{
