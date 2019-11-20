@@ -33,6 +33,12 @@ namespace let{
                 Enable();
             }
 
+            RandomDevice(const RandomDevice&) = delete;
+            RandomDevice(RandomDevice&&) = delete;
+
+            RandomDevice& operator=(RandomDevice other)noexcept = delete;
+            RandomDevice& operator=(RandomDevice&& other)noexcept = delete;
+
             bool DataReady()noexcept{
                 return memory<std::uint32_t>(RNG+R::SR) | B::DRDY;
             }
