@@ -27,44 +27,45 @@
 
 namespace let{
     namespace RNG{
-        template<std::uint32_t A>
-        class RandomNumberGenerator{
+        class RandomDevice{
         public:
-            RandomNumberGenerator(){
+            RandomDevice()noexcept{
                 Enable();
             }
 
-            bool DataReady(){
-                return memory<std::uint32_t>(A+R::SR) | B::DRDY;
+            bool DataReady()noexcept{
+                return memory<std::uint32_t>(RNG+R::SR) | B::DRDY;
             }
 
-            bool SeedError(){
-                return memory<std::uint32_t>(A+R::SR) | B::SEIS;
+            bool SeedError()noexcept{
+                return memory<std::uint32_t>(RNG+R::SR) | B::SEIS;
             }
 
-            bool ClockError(){
-                return memory<std::uint32_t>(A+R::SR) | B::CEIS;
+            bool ClockError()noexcept{
+                return memory<std::uint32_t>(RNG+R::SR) | B::CEIS;
             }
 
-            void ResetErrors(){
-                memory<std::uint32_t>(A+R::SR) &= ~(B::SEIS|B::CEIS);
+            void ResetErrors()noexcept{
+                memory<std::uint32_t>(RNG+R::SR) &= ~(B::SEIS|B::CEIS);
             }
 
-            std::uint32_t get(){
+            std::uint32_t get()noexcept{
                 while(!DataReady());
-                return memory<std::uint32_t>(A+R::DR);
+                return memory<std::uint32_t>(RNG+R::DR);
             }
 
-            std::uint32_t operator()(){
+            std::uint32_t operator()()noexcept{
                 return get();
             }
 
-            void Enable(){
-                memory<std::uint32_t>(A+R::CR) |= B::RNGEN;
             }
 
-            void Disable(){
-                memory<std::uint32_t>(A+R::CR) &= ~B::RNGEN;
+            void Enable()noexcept{
+                memory<std::uint32_t>(RNG+R::CR) |= B::RNGEN;
+            }
+
+            void Disable()noexcept{
+                memory<std::uint32_t>(RNG+R::CR) &= ~B::RNGEN;
             }
         };
     }
