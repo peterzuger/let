@@ -57,6 +57,22 @@ namespace let{
         using read_only<T, A>::operator T;
         using write_only<T, A>::operator =;
     };
+
+    template<typename T, std::size_t A, std::uint8_t b>
+    struct bit{
+
+        bit& operator=(bool value)volatile noexcept{
+            if(value)
+                reg<T, A>() |= BIT(b);
+            else
+                reg<T, A>() &= ~BIT(b);
+            return *this;
+        }
+
+        operator bool()const volatile noexcept{
+            return reg<T, A>() & BIT(b);
+        }
+    };
 }
 
 #endif /* LET_HAL_HPP */
