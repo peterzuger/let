@@ -1,0 +1,16 @@
+-Iinclude
+-std=c++17
+-Wall
+-Wextra
+-Wpedantic
+-Wnull-dereference
+-Wshadow
+-Wdouble-promotion
+-Winit-self
+-Wswitch-default
+-Wswitch-enum
+-Wundef
+-Wconversion
+-Winline
+-Waddress
+-Wno-unused-variable
