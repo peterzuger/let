@@ -27,7 +27,7 @@
 
 namespace let{
     template<typename T>
-    volatile T &memory(const std::size_t loc){
+    volatile T &memory(const std::size_t loc)noexcept{
         return *reinterpret_cast<T*>(loc);
     }
 
@@ -37,14 +37,14 @@ namespace let{
 
     template<typename T, std::size_t A>
     struct read_only{
-        operator T()const volatile{
+        operator T()const volatile noexcept{
             return memory<T>(A);
         }
     };
 
     template<typename T, std::size_t A>
     struct write_only{
-        void operator =(const std::size_t v)const volatile{
+        void operator =(const std::size_t v)const volatile noexcept{
             memory<T>(A) = v;
         }
     };
