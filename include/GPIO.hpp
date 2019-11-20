@@ -140,6 +140,9 @@ namespace let{
                 case Mode::Analog:
                     memory<std::uint32_t>(P+R::MODER) |= (B::Analog << (p*2));
                     break;
+
+                default:
+                    break;
                 }
             }
 
@@ -169,6 +172,9 @@ namespace let{
                 case OSpeed::High:
                     memory<std::uint32_t>(P+R::OSPEEDR) |= (B::High << (p*2));
                     break;
+
+                default:
+                    break;
                 }
             }
 
@@ -186,6 +192,9 @@ namespace let{
 
                 case Pull::Pulldown:
                     memory<std::uint32_t>(P+R::PUPDR) |= (B::Pulldown << (p*2));
+                    break;
+
+                default:
                     break;
                 }
             }
