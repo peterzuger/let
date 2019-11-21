@@ -56,70 +56,70 @@ namespace let{
                 Disable();
             }
 
-            void Enable()noexcept volatile{
+            void Enable()volatile{
                 memory<std::uint32_t>(A+R::CR1) |= B::UE;
             }
 
-            void Disable()noexcept volatile{
+            void Disable()volatile{
                 memory<std::uint32_t>(A+R::CR1) &= ~B::UE;
             }
 
-            void EnableTransmitter()noexcept volatile{
+            void EnableTransmitter()volatile{
                 memory<std::uint32_t>(A+R::CR1) |= B::TE;
             }
 
-            void DisableTransmitter()noexcept volatile{
+            void DisableTransmitter()volatile{
                 memory<std::uint32_t>(A+R::CR1) &= ~B::TE;
             }
 
-            void EnableReceiver()noexcept volatile{
+            void EnableReceiver()volatile{
                 memory<std::uint32_t>(A+R::CR1) |= B::RE;
             }
 
-            void DisableReceiver()noexcept volatile{
+            void DisableReceiver()volatile{
                 memory<std::uint32_t>(A+R::CR1) &= ~B::RE;
             }
 
-            void SetWordlen(Wordlen)noexcept volatile{
+            void SetWordlen(Wordlen)volatile{
                 // todo
             }
 
-            void SetPolarity()noexcept volatile{}
-            void SetPhase()noexcept volatile{}
+            void SetPolarity()volatile{}
+            void SetPhase()volatile{}
 
-            void EnableCTS()noexcept volatile{
+            void EnableCTS()volatile{
                 memory<std::uint32_t>(A+R::CR3) &= B::CTSE;
             }
-            void DisableCTS()noexcept volatile{
+            void DisableCTS()volatile{
                 memory<std::uint32_t>(A+R::CR3) &= ~B::CTSE;
             }
-            void EnableRTS()noexcept volatile{
+            void EnableRTS()volatile{
                 memory<std::uint32_t>(A+R::CR3) &= B::RTSE;
             }
-            void DisableRTS()noexcept volatile{
+            void DisableRTS()volatile{
                 memory<std::uint32_t>(A+R::CR3) &= ~B::RTSE;
             }
 
-            void flush()const noexcept volatile{
+            void flush()const volatile{
                 while(!(memory<std::uint32_t>(A+R::ISR) & B::TC));
             }
 
-            bool flush(bool blocking)const noexcept volatile{
+            bool flush(bool blocking)const volatile{
                 if(blocking)
                     flush();
                 return memory<std::uint32_t>(A+R::ISR) & B::TC;
             }
 
-            bool empty()const noexcept volatile{
+            bool empty()const volatile{
                 return memory<std::uint32_t>(A+R::ISR) & B::TXE;
             }
 
-            void write(value_type d)const noexcept volatile{
+            void write(value_type d)const volatile{
                 while(!empty());
                 memory<std::uint32_t>(A+R::TDR) = d;
             }
 
-            bool write(value_type d, bool blocking)const noexcept volatile{
+            bool write(value_type d, bool blocking)const volatile{
                 if(blocking){
                     write(d);
                     return true;
@@ -133,16 +133,16 @@ namespace let{
                 }
             }
 
-            bool any()const noexcept volatile{
+            bool any()const volatile{
                 return memory<std::uint32_t>(A+R::ISR) & B::RXNE;
             }
 
-            value_type read()const noexcept volatile{
+            value_type read()const volatile{
                 while(!any());
                 return static_cast<std::uint8_t>(memory<std::uint32_t>(A+R::RDR));
             }
 
-            std::optional<value_type> read(bool blocking)const noexcept volatile{
+            std::optional<value_type> read(bool blocking)const volatile{
                 if(blocking){
                     return std::make_optional(read());
                 }else{
@@ -154,12 +154,12 @@ namespace let{
                 }
             }
 
-            void write(std::string_view view)const noexcept volatile{
+            void write(std::string_view view)const volatile{
                 for(const auto i : view)
                     write(i);
             }
 
-            void sendBreak()const noexcept volatile{
+            void sendBreak()const volatile{
 #if defined(STM32F4) && !defined(STM32F437xx)
                 memory<std::uint32_t>(A+R::CR1) |= B::SBK;
 #else
@@ -167,14 +167,14 @@ namespace let{
 #endif /* defined(STM32F4) */
             }
 
-            void SetBaudRate(std::uint32_t baud)noexcept volatile{
+            void SetBaudRate(std::uint32_t baud)volatile{
                 memory<std::uint32_t>(A+R::BRR) = baud;
             }
 
-            void EnableOversampling()noexcept volatile{
+            void EnableOversampling()volatile{
                 memory<std::uint32_t>(A+R::CR1) |= B::OVER8;
             }
-            void DisableOversampling()noexcept volatile{
+            void DisableOversampling()volatile{
                 memory<std::uint32_t>(A+R::CR1) &= ~B::OVER8;
             }
         };
