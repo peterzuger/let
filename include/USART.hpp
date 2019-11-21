@@ -101,7 +101,7 @@ namespace let{
             }
 
             bool busy()const volatile{
-                return !memory<std::uint32_t>(A+R::ISR) & B::TC;
+                return !(memory<std::uint32_t>(A+R::ISR) & B::TC);
             }
 
             void flush()const volatile{
