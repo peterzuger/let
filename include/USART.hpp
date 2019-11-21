@@ -52,7 +52,7 @@ namespace let{
             }
 
             ~USART(){
-                while(!(memory<std::uint32_t>(A+R::ISR) & B::TC));
+                flush();
                 Disable();
             }
 
@@ -100,14 +100,18 @@ namespace let{
                 memory<std::uint32_t>(A+R::CR3) &= ~B::RTSE;
             }
 
+            bool busy()const volatile{
+                return !memory<std::uint32_t>(A+R::ISR) & B::TC;
+            }
+
             void flush()const volatile{
-                while(!(memory<std::uint32_t>(A+R::ISR) & B::TC));
+                while(busy());
             }
 
             bool flush(bool blocking)const volatile{
                 if(blocking)
                     flush();
-                return memory<std::uint32_t>(A+R::ISR) & B::TC;
+                return busy();
             }
 
             bool empty()const volatile{
