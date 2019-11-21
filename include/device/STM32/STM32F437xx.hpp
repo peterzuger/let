@@ -198,8 +198,8 @@ namespace let{
             constexpr auto CCIPR        = 0x88;   // Peripherals independent clock configuration register
             constexpr auto BDCR         = 0x90;   // Backup domain control register
             constexpr auto CSR          = 0x94;   // Control/status register
-            // constexpr auto CRRCR        = 0x98;   // Clock recovery RC register L496/L4A6 devices only
-            // constexpr auto CCIPR2       = 0x9C;   // Peripherals independent clock configuration register L496/L4A6 devices only
+         // constexpr auto CRRCR        = 0x98;   // Clock recovery RC register L496/L4A6 devices only
+         // constexpr auto CCIPR2       = 0x9C;   // Peripherals independent clock configuration register L496/L4A6 devices only
         }
 
         namespace B{
@@ -240,7 +240,7 @@ namespace let{
 
             // PLLSAI2CFGR
             constexpr auto PLLSAI2REN   = 1 << 24;// PLLSAI2 PLLADC2CLK output enable
-            // constexpr auto PLLSAI2QEN   = 1 << 20;// RESERVED MUST BE KEPT AT RESET VALUE
+         // constexpr auto PLLSAI2QEN   = 1 << 20;// RESERVED MUST BE KEPT AT RESET VALUE
             constexpr auto PLLSAI2P     = 1 << 17;// PLLSAI2 division factor for PLLSAI2CLK (SAI1 or SAI2 clock)
             constexpr auto PLLSAI2PEN   = 1 << 16;// PLLSAI2 PLLSAI2CLK output enable
 
