@@ -120,7 +120,7 @@ namespace let{
 
             void write(value_type d)const volatile{
                 while(!empty());
-                memory<std::uint32_t>(A+R::TDR) = d;
+                memory<value_type>(A+R::TDR) = d;
             }
 
             bool write(value_type d, bool blocking)const volatile{
@@ -129,7 +129,7 @@ namespace let{
                     return true;
                 }else{
                     if(empty()){
-                        memory<std::uint32_t>(A+R::TDR) = d;
+                        memory<value_type>(A+R::TDR) = d;
                         return true;
                     }else{
                         return false;
@@ -143,7 +143,7 @@ namespace let{
 
             value_type read()const volatile{
                 while(!any());
-                return static_cast<std::uint8_t>(memory<std::uint32_t>(A+R::RDR));
+                return memory<value_type>(A+R::RDR);
             }
 
             std::optional<value_type> read(bool blocking)const volatile{
