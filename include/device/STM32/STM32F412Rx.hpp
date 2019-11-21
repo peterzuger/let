@@ -23,6 +23,174 @@
 #define LET_DEVICE_STM32_STM32F412RX_HPP
 
 namespace let{
+    namespace ADC{
+        constexpr auto ADC1                       = 0x40012000;
+
+        namespace R{
+            constexpr auto SR                     = 0x00;         // status register
+            constexpr auto CR1                    = 0x04;         // control register 1
+            constexpr auto CR2                    = 0x08;         // control register 2
+            constexpr auto SMPR1                  = 0x0C;         // sample time register 1
+            constexpr auto SMPR2                  = 0x10;         // sample time register 2
+            constexpr auto JOFR1                  = 0x14;         // injected channel data offset register 1
+            constexpr auto JOFR2                  = 0x18;         // injected channel data offset register 2
+            constexpr auto JOFR3                  = 0x1C;         // injected channel data offset register 3
+            constexpr auto JOFR4                  = 0x20;         // injected channel data offset register 4
+            constexpr auto HTR                    = 0x24;         // watchdog higher threshold register
+            constexpr auto LTR                    = 0x28;         // watchdog lower threshhold register
+            constexpr auto SQR1                   = 0x2C;         // sequence register 1
+            constexpr auto SQR2                   = 0x30;         // sequence register 2
+            constexpr auto SQR3                   = 0x34;         // sequence register 3
+            constexpr auto JSQR                   = 0x38;         // injected sequence register
+            constexpr auto JDR1                   = 0x3C;         // injected data register 1
+            constexpr auto JDR2                   = 0x40;         // injected data register 2
+            constexpr auto JDR3                   = 0x44;         // injected data register 3
+            constexpr auto JDR4                   = 0x48;         // injected data register 4
+            constexpr auto DR                     = 0x4C;         // data register
+
+            constexpr auto COMMON                 = 0x300;        // ADC common register offset
+
+            constexpr auto CSR                    = 0x00;         // common status register
+            constexpr auto CCR                    = 0x04;         // common control register
+        }
+
+        namespace B{
+            // SR
+            constexpr auto OVR                    = 1 << 5;       // Overrun
+            constexpr auto STRT                   = 1 << 4;       // Start Flag
+            constexpr auto JSTRT                  = 1 << 3;       // Injected Channel Start Flag
+            constexpr auto JEOC                   = 1 << 2;       // Injected Channel End of Conversion
+            constexpr auto EOC                    = 1 << 1;       // End of conversion
+            constexpr auto AWD                    = 1 << 0;       // Analog Watchdog
+
+            // CR1
+            constexpr auto OVRIE                  = 1 << 26;      // Overrun Interrupt Enable
+            constexpr auto RES_12bit              = 0b00 << 24;   // Resolution: 12-bit (minimum 15 ADCCLK cycles)
+            constexpr auto RES_10bit              = 0b01 << 24;   // Resolution: 10-bit (minimum 13 ADCCLK cycles)
+            constexpr auto RES_8bit               = 0b10 << 24;   // Resolution: 8-bit (minimum 11 ADCCLK cycles)
+            constexpr auto RES_6bit               = 0b11 << 24;   // Resolution: 6-bit (minimum 9 ADCCLK cycles)
+            constexpr auto AWDEN                  = 1 << 23;      // Analog Watchdog Enable
+            constexpr auto JAWDEN                 = 1 << 22;      // Analog Watchdog Enable on Injected Channels
+            constexpr auto JDISCEN                = 1 << 12;      // Discontinuous mode on injected channels
+            constexpr auto DISCEN                 = 1 << 11;      // Discontinuous mode
+            constexpr auto JAUTO                  = 1 << 10;      // Automatic injected group conversion
+            constexpr auto AWDSGL                 = 1 << 9;       // Enable Watchdog on a single channel in scan mode
+            constexpr auto SCAN                   = 1 << 8;       // Scan mode
+            constexpr auto JEOCIE                 = 1 << 7;       // Interrupt enable for Injected Channels
+            constexpr auto AWDIE                  = 1 << 6;       // Analog Watchdog Interrupt Enable
+            constexpr auto EOCIE                  = 1 << 5;       // Interrupt Enable for EOC
+                                                                  // 18 Analog Watchdog Channels
+
+            // CR2
+            constexpr auto SWSTART                = 1 << 30;      // Start conversion
+            constexpr auto EXTEN_DISABLE          = 0b00 << 28;   // Trigger detection disabled
+            constexpr auto EXTEN_RISING           = 0b00 << 28;   // Trigger detection on the rising edge
+            constexpr auto EXTEN_FALLING          = 0b00 << 28;   // Trigger detection on the falling edge
+            constexpr auto EXTEN_BOTH             = 0b00 << 28;   // Trigger detection on both the rising and falling edges
+            constexpr auto EXTSEL_T1CC1           = 0b0000 << 24; // Timer 1 CC1 event
+            constexpr auto EXTSEL_T1CC2           = 0b0001 << 24; // Timer 1 CC2 event
+            constexpr auto EXTSEL_T1CC3           = 0b0010 << 24; // Timer 1 CC3 event
+            constexpr auto EXTSEL_T2CC2           = 0b0011 << 24; // Timer 2 CC2 event
+            constexpr auto EXTSEL_T2CC3           = 0b0100 << 24; // Timer 2 CC3 event
+            constexpr auto EXTSEL_T2CC4           = 0b0101 << 24; // Timer 2 CC4 event
+            constexpr auto EXTSEL_T2TRGO          = 0b0110 << 24; // Timer 2 TRGO event
+            constexpr auto EXTSEL_T3CC1           = 0b0111 << 24; // Timer 3 CC1 event
+            constexpr auto EXTSEL_T3TRGO          = 0b1000 << 24; // Timer 3 TRGO event
+            constexpr auto EXTSEL_T4CC4           = 0b1001 << 24; // Timer 4 CC4 event
+            constexpr auto EXTSEL_T5CC1           = 0b1010 << 24; // Timer 5 CC1 event
+            constexpr auto EXTSEL_T5CC2           = 0b1011 << 24; // Timer 5 CC2 event
+            constexpr auto EXTSEL_T5CC3           = 0b1100 << 24; // Timer 5 CC3 event
+            constexpr auto EXTSEL_T8CC1           = 0b1101 << 24; // Timer 8 CC1 event
+            constexpr auto EXTSEL_T8TRGO          = 0b1110 << 24; // Timer 8 TRGO event
+            constexpr auto EXTSEL_EXTI            = 0b1111 << 24; // EXTI line 11
+            constexpr auto JSWSTART               = 1 << 22;      // Start conversion of Injected Channels
+            constexpr auto JEXTEN_DISABLE         = 0b00 << 20;   // Trigger detection disabled for Injected Channels
+            constexpr auto JEXTEN_RISING          = 0b00 << 20;   // Trigger detection on the rising edge for Injected Channels
+            constexpr auto JEXTEN_FALLING         = 0b00 << 20;   // Trigger detection on the falling edge for Injected Channels
+            constexpr auto JEXTEN_BOTH            = 0b00 << 20;   // Trigger detection on both the rising and falling edges for Injected Channels
+            constexpr auto JEXTSEL_T1CC4          = 0b0000 << 16; // Timer 1 CC4 event
+            constexpr auto JEXTSEL_T1TRGO         = 0b0001 << 16; // Timer 1 TRGO event
+            constexpr auto JEXTSEL_T2CC1          = 0b0010 << 16; // Timer 2 CC1 event
+            constexpr auto JEXTSEL_T2TRGO         = 0b0011 << 16; // Timer 2 TRGO event
+            constexpr auto JEXTSEL_T3CC2          = 0b0100 << 16; // Timer 3 CC2 event
+            constexpr auto JEXTSEL_T3CC4          = 0b0101 << 16; // Timer 3 CC4 event
+            constexpr auto JEXTSEL_T4CC1          = 0b0110 << 16; // Timer 4 CC1 event
+            constexpr auto JEXTSEL_T4CC2          = 0b0111 << 16; // Timer 4 CC2 event
+            constexpr auto JEXTSEL_T4CC3          = 0b1000 << 16; // Timer 4 CC3 event
+            constexpr auto JEXTSEL_T4TRGO         = 0b1001 << 16; // Timer 4 TRGO event
+            constexpr auto JEXTSEL_T5CC4          = 0b1010 << 16; // Timer 5 CC4 event
+            constexpr auto JEXTSEL_T5TRGO         = 0b1011 << 16; // Timer 5 TRGO event
+            constexpr auto JEXTSEL_T8CC2          = 0b1100 << 16; // Timer 8 CC2 event
+            constexpr auto JEXTSEL_T8CC3          = 0b1101 << 16; // Timer 8 CC3 event
+            constexpr auto JEXTSEL_T8CC4          = 0b1110 << 16; // Timer 8 CC4 event
+            constexpr auto JEXTSEL_EXTI           = 0b1111 << 16; // EXTI line15
+            constexpr auto ALIGN                  = 1 << 11;      // Data Alignment
+            constexpr auto EOCS                   = 1 << 10;      // End of Conversion Selection
+            constexpr auto DDS                    = 1 << 9;       // DMA disable selection
+            constexpr auto DMA                    = 1 << 8;       // DMA mode
+            constexpr auto CONT                   = 1 << 1;       // Continuous mode
+            constexpr auto ADON                   = 1 << 0;       // AD converter ON/OFF
+
+            // SMPR1 (CH 10-18)
+            // SMPR2 (CH 0-9)
+            constexpr auto SMPx_CHS               = 3;
+            constexpr auto SMPx3                  = 0b000;        // Channel x sample time selection
+            constexpr auto SMPx15                 = 0b001;        // Channel x sample time selection
+            constexpr auto SMPx28                 = 0b010;        // Channel x sample time selection
+            constexpr auto SMPx56                 = 0b011;        // Channel x sample time selection
+            constexpr auto SMPx84                 = 0b100;        // Channel x sample time selection
+            constexpr auto SMPx112                = 0b101;        // Channel x sample time selection
+            constexpr auto SMPx144                = 0b110;        // Channel x sample time selection
+            constexpr auto SMPx480                = 0b111;        // Channel x sample time selection
+
+            // JOFR1
+
+            // JOFR2
+
+            // JOFR3
+
+            // JOFR4
+
+            // HTR
+
+            // LTR
+
+            // SQR1
+
+            // SQR2
+
+            // SQR3
+
+            // JSQR
+
+            // JDR1
+
+            // JDR2
+
+            // JDR3
+
+            // JDR4
+
+            // DR
+
+            // CSR
+            constexpr auto OVR1                   = 1 << 5;       // Overrun Flag of ADC1
+            constexpr auto STRT1                  = 1 << 4;       // Start flag of ADC1
+            constexpr auto JSTRT1                 = 1 << 3;       // Injected Channel Start Flag of ADC1
+            constexpr auto JEOC1                  = 1 << 2;       // Injected Channel End of conversion of ADC1
+            constexpr auto EOC1                   = 1 << 1;       // End of conversion of ADC1
+            constexpr auto AWD1                   = 1 << 0;       // Analog Watchdog flag of ADC1
+
+            // CCR
+            constexpr auto TSVREFE                = 1 << 23;      // Temperature sensor and VREFINT enable
+            constexpr auto VBATE                  = 1 << 22;      // VBAT enable
+            constexpr auto ADCPRE2                = 0b00 << 16;   // ADC Prescaler PCLK2 / 2
+            constexpr auto ADCPRE4                = 0b01 << 16;   // ADC Prescaler PCLK2 / 4
+            constexpr auto ADCPRE6                = 0b10 << 16;   // ADC Prescaler PCLK2 / 6
+            constexpr auto ADCPRE8                = 0b11 << 16;   // ADC Prescaler PCLK2 / 8
+        }
+    }
+
     namespace CRC{
         constexpr auto CRC1                       = 0x40023000;
 
