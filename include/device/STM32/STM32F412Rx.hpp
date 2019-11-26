@@ -894,6 +894,50 @@ namespace let{
             constexpr auto EIE                    = 1 << 0;       // Error interrupt enable
         }
     }
+
+    namespace IWDG{
+        constexpr auto IWDG                       = 0x40003000;
+        constexpr auto WWDG                       = 0x40002C00;
+
+        namespace R{
+            constexpr auto KR                     = 0x00;         // Status register
+            constexpr auto PR                     = 0x04;         // Prescaler register
+            constexpr auto RLR                    = 0x08;         // Reload register
+            constexpr auto SR                     = 0x0C;         // Status register
+        }
+
+        namespace B{
+            // KR
+            constexpr auto FEED_KEY               = 0xAAAA;       // Key to Feed the dog
+            constexpr auto START_KEY              = 0xCCCC;       // Watchdog Start Key
+            constexpr auto UNLOCK_KEY             = 0x5555;       // Watchdog register Unlock key
+
+            // SR
+            constexpr auto RVU                    = 1 << 1;       // Watchdog counter reload value update
+            constexpr auto PVU                    = 1 << 0;       // Watchdog prescaler value update
+        }
+    }
+
+    namespace WWDG{
+        constexpr auto WWDG                       = 0x40002C00;
+
+        namespace R{
+            constexpr auto CR                     = 0x00;         // Control Register
+            constexpr auto CFR                    = 0x04;         // Configuration Register
+            constexpr auto SR                     = 0x08;         // Status Register
+        }
+
+        namespace B{
+            // CR
+            constexpr auto WDGA                   = 1 << 7;       // Activation bit
+
+            // CFR
+            constexpr auto EWI                    = 1 << 9;       // Early wakeup interrupt
+
+            // SR
+            constexpr auto EWIF                   = 1 << 0;       // Early wakeup interrupt flag
+        }
+    }
 }
 
 #endif /* LET_DEVICE_STM32_STM32F412RX_HPP */
