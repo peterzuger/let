@@ -14,3 +14,6 @@
 -Winline
 -Waddress
 -Wno-unused-variable
+-DSTM32F4
+-DSTM32F413
+-DSTM32F413xx
