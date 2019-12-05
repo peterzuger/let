@@ -27,26 +27,14 @@
 
 namespace let{
     namespace FLASH{
-        inline void EnableInstructionCache(){
-            memory<std::uint32_t>(FLASH + R::ACR) |= B::ICEN;
-        }
-        inline void DisableInstructionCache(){
-            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::ICEN);
-        }
+        inline void EnableInstructionCache(){set_mask(FLASH + R::ACR, B::ICEN);}
+        inline void DisableInstructionCache(){clear_mask(FLASH + R::ACR, B::ICEN);}
 
-        inline void EnableDataCache(){
-            memory<std::uint32_t>(FLASH + R::ACR) |= B::DCEN;
-        }
-        inline void DisbleDataCache(){
-            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::DCEN);
-        }
+        inline void EnableDataCache(){set_mask(FLASH + R::ACR, B::DCEN);}
+        inline void DisableDataCache(){clear_mask(FLASH + R::ACR, B::DCEN);}
 
-        inline void EnablePrefetchBuffer(){
-            memory<std::uint32_t>(FLASH + R::ACR) |= B::PRFTEN;
-        }
-        inline void DisblePrefetchBuffer(){
-            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::PRFTEN);
-        }
+        inline void EnablePrefetchBuffer(){set_mask(FLASH + R::ACR, B::PRFTEN);}
+        inline void DisablePrefetchBuffer(){clear_mask(FLASH + R::ACR, B::PRFTEN);}
 
 
         template<std::uint32_t A>
