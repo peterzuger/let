@@ -75,11 +75,12 @@ namespace let{
                 FlashWriter(const FlashWriter& other) = delete; // non construction-copyable
                 FlashWriter& operator=(const FlashWriter&) = delete; // non copyable
 
-                bool write(const value_type& data){
+                void write(const value_type& data){
                     memory<value_type>(start += sizeof(value_type)) = data;
                 }
                 bool write(const value_type& data, bool){
                     write(data);
+                    return true;
                 }
             };
 
