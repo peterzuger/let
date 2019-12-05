@@ -210,6 +210,19 @@ namespace let{
             }
         };
 
+        template<std::uint32_t P, std::uint8_t p, bool active>
+        class LED{
+            Pin<P, p> pin;
+
+        public:
+            LED():pin{Mode::Output}{}
+            LED(OType type):pin{Mode::Output, type}{}
+
+            void on(){pin.write(active);}
+            void off(){pin.write(!active);}
+            void toggle(){pin.toggle();}
+        };
+
         /**
          * @brief configure a pin for alternate use
          * This function can be used to configure a GPIO pin
