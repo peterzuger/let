@@ -31,8 +31,18 @@ namespace let{
         return *reinterpret_cast<T*>(loc);
     }
 
-    constexpr auto BIT(const unsigned long i){
+    constexpr auto BIT(const unsigned long i)noexcept{
         return 1 << i;
+    }
+
+    template<typename T>
+    void set_bit(const std::size_t loc, const unsigned long i)noexcept{
+        memory<T>(loc) |= BIT(i);
+    }
+
+    template<typename T>
+    void clear_bit(const std::size_t loc, const unsigned long i)noexcept{
+        memory<T>(loc) &= static_cast<T>(~BIT(i));
     }
 
     template<typename T, std::size_t A>
