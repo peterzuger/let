@@ -45,6 +45,16 @@ namespace let{
         memory<T>(loc) &= static_cast<T>(~BIT(i));
     }
 
+    template<typename T>
+    void set_mask(const std::size_t loc, T mask)noexcept{
+        memory<T>(loc) |= static_cast<T>(mask);
+    }
+
+    template<typename T>
+    void clear_mask(const std::size_t loc, T mask)noexcept{
+        memory<T>(loc) &= static_cast<T>(~mask);
+    }
+
     template<typename T, std::size_t A>
     struct read_only{
         operator T()const volatile noexcept{
