@@ -1,0 +1,171 @@
+/**
+ * @file   let/include/FLASH.hpp
+ * @author Peter Züger
+ * @date   29.08.2018
+ * @brief  FLASH abstraction
+ *
+ * This file is part of let (https://gitlab.com/peterzuger/let).
+ * Copyright (c) 2019 Peter Züger.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+#ifndef LET_FLASH_HPP
+#define LET_FLASH_HPP
+
+#include "HAL.hpp"
+#include "device/device.hpp"
+
+namespace let{
+    namespace FLASH{
+        inline void EnableInstructionCache(){
+            memory<std::uint32_t>(FLASH + R::ACR) |= B::ICEN;
+        }
+        inline void DisableInstructionCache(){
+            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::ICEN);
+        }
+
+        inline void EnableDataCache(){
+            memory<std::uint32_t>(FLASH + R::ACR) |= B::DCEN;
+        }
+        inline void DisbleDataCache(){
+            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::DCEN);
+        }
+
+        inline void EnablePrefetchBuffer(){
+            memory<std::uint32_t>(FLASH + R::ACR) |= B::PRFTEN;
+        }
+        inline void DisblePrefetchBuffer(){
+            memory<std::uint32_t>(FLASH + R::ACR) &= static_cast<std::uint32_t>(~B::PRFTEN);
+        }
+
+
+        template<std::uint32_t A>
+        class Flash{
+            template<typename T>
+            class FlashReader{
+                std::uint32_t start;
+
+            public:
+                using value_type = T;
+
+                FlashReader(std::uint32_t _start):start{_start}{}
+                FlashReader(FlashReader&& other) = default;
+
+                FlashReader(const FlashReader& other) = delete; // non construction-copyable
+                FlashReader& operator=(const FlashReader&) = delete; // non copyable
+
+                value_type read(){
+                    return memory<value_type>(start += sizeof(value_type));
+                }
+
+                value_type read(bool){
+                    return read();
+                }
+            };
+
+
+            template<typename T>
+            class FlashWriter{
+                std::uint32_t start;
+
+            public:
+                using value_type = T;
+
+                FlashWriter(std::uint32_t _start):start{_start}{}
+                FlashWriter(FlashWriter&& other) = default;
+
+                FlashWriter(const FlashWriter& other) = delete; // non construction-copyable
+                FlashWriter& operator=(const FlashWriter&) = delete; // non copyable
+
+                bool write(const value_type& data){
+                    memory<value_type>(start += sizeof(value_type)) = data;
+                }
+                bool write(const value_type& data, bool){
+                    write(data);
+                }
+            };
+
+        public:
+            void lock(){
+                memory<std::uint32_t>(A + R::CR) |= B::LOCK;
+            }
+
+            void unlock(){
+                memory<std::uint32_t>(A + R::KEYR) = B::KEY1;
+                memory<std::uint32_t>(A + R::KEYR) = B::KEY2;
+            }
+
+            bool busy(){
+                return memory<std::uint32_t>(A + R::SR) & B::BSY;
+            }
+
+            void start(){
+                memory<std::uint32_t>(A + R::CR) |= B::STRT;
+            }
+
+            template<typename T = std::uint8_t>
+            FlashReader<T> read(std::uint32_t address){
+                return FlashReader<T>(address);
+            }
+
+
+            bool locked(){
+                return memory<std::uint32_t>(A+R::CR) & B::LOCK;
+            }
+
+            void ProgrammingSize(std::size_t bits){
+                memory<std::uint32_t>(A+R::CR) &= ~0x30;
+                switch(bits){
+                case 8:  memory<std::uint32_t>(A + R::CR) |= B::X8; break;
+                case 16: memory<std::uint32_t>(A + R::CR) |= B::X16;break;
+                case 32: memory<std::uint32_t>(A + R::CR) |= B::X32;break;
+                case 64: memory<std::uint32_t>(A + R::CR) |= B::X64;break;
+                default:break;
+                }
+            }
+
+            // Must be started via start()
+            // then busy wait outside of this
+            void SectorErase(uint8_t sector){
+                while(busy())
+                    asm volatile("");
+                memory<std::uint32_t>(A + R::CR) &= ~(0xF<<3);
+                memory<std::uint32_t>(A + R::CR) |= (sector & 0xF) << 3;
+                memory<std::uint32_t>(A + R::CR) |= B::SER;
+            }
+
+            void SectorErase(uint8_t sector, bool blocking){
+                SectorErase(sector);
+                if(blocking){
+                    start();
+                    while(busy())
+                        asm volatile("");
+                }
+            }
+
+            void MassErase(){
+                memory<std::uint32_t>(A + R::CR) |= B::MER;
+            }
+
+            void EnableProgramming(){
+                memory<std::uint32_t>(A + R::CR) |= B::PG;
+            }
+
+            void DisableProgramming(){
+                memory<std::uint32_t>(A + R::CR) &= ~B::PG;
+            }
+        };
+    }
+}
+
+#endif /* LET_FLASH_HPP */
