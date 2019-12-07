@@ -89,6 +89,11 @@ namespace let{
                 OutputType(o);
             }
 
+            Pin(Mode m, Pull pp){
+                mode(m);
+                PullUpDown(pp);
+            }
+
             operator bool(){
                 return read();
             }
