@@ -46,6 +46,11 @@ namespace let{
     }
 
     template<typename T>
+    bool test_bit(const std::size_t loc, const unsigned long i)noexcept{
+        return memory<T>(loc) & BIT(i);
+    }
+
+    template<typename T>
     void set_mask(const std::size_t loc, T mask)noexcept{
         memory<T>(loc) |= static_cast<T>(mask);
     }
