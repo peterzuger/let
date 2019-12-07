@@ -218,9 +218,20 @@ namespace let{
             LED():pin{Mode::Output}{}
             LED(OType type):pin{Mode::Output, type}{}
 
+            operator bool(){
+                return read();
+            }
+
+            LED& operator=(bool val){
+                write(val);
+                return *this;
+            }
+
             void on(){pin.write(active);}
             void off(){pin.write(!active);}
             void toggle(){pin.toggle();}
+            void write(bool val){pin.write(active ? val : !val);}
+            bool read(){return active ? pin.read() : !pin.read();}
         };
 
         /**
