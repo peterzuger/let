@@ -239,6 +239,21 @@ namespace let{
             bool read(){return active ? pin.read() : !pin.read();}
         };
 
+        template<std::uint32_t P, std::uint8_t p, bool active>
+        class Button{
+            Pin<P, p> pin;
+
+        public:
+            Button():pin{Mode::Input}{}
+            Button(Pull pp):pin{Mode::Input, pp}{}
+
+            operator bool(){
+                return read();
+            }
+
+            void read(){return active ? pin.read() : !pin.read();}
+        };
+
         /**
          * @brief configure a pin for alternate use
          * This function can be used to configure a GPIO pin
