@@ -251,7 +251,7 @@ namespace let{
                 return read();
             }
 
-            void read(){return active ? pin.read() : !pin.read();}
+            bool read(){return active ? pin.read() : !pin.read();}
         };
 
         /**
