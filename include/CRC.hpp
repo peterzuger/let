@@ -30,16 +30,18 @@ namespace let{
         template<std::uint32_t A>
         class CRC{
         public:
+            using value_type = std::uint32_t;
+
             CRC(){
                 reset();
             }
 
             void reset(){
-                memory<std::uint32_t>(A+R::CR) |= B::RESET;
+                set_mask(A + R::CR, B::RESET);
             }
 
-            void update(std::uint32_t data){
-                memory<std::uint32_t>(A+R::DR) = data;
+            void update(value_type data){
+                memory<value_type>(A+R::DR) = data;
             }
 
             template<typename Iterator>
@@ -49,8 +51,8 @@ namespace let{
                 }
             }
 
-            std::uint32_t result(){
-                return memory<std::uint32_t>(A+R::DR);
+            value_type result(){
+                return memory<value_type>(A+R::DR);
             }
         };
     }
