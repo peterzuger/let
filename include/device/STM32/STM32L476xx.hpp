@@ -23,6 +23,38 @@
 #define LET_DEVICE_STM32_STM32L476XX_HPP
 
 namespace let{
+    namespace CRC{
+        constexpr auto CRC1             = 0x40023000;
+
+        namespace R{
+            constexpr auto DR           = 0x00;   // Data register
+            constexpr auto IDR          = 0x04;   // Independent Data register
+            constexpr auto CR           = 0x08;   // Control register
+            constexpr auto INIT         = 0x10;   // Initial CRC value register
+            constexpr auto POL          = 0x14;   // CRC Polynomial register
+        }
+
+        namespace B{
+            // CR
+            constexpr auto REV_OUT      = 1 << 7; // reverse output data
+
+            constexpr auto NONE         = 0b00 << 5; // Bit order not affected
+            constexpr auto BYTE         = 0b01 << 5; // Bit reversal done by byte
+            constexpr auto HWORD        = 0b10 << 5; // Bit reversal done by half-word
+            constexpr auto WORD         = 0b11 << 5; // Bit reversal done by word
+
+            constexpr auto P32B         = 0b00 << 3; // 32 bit polynomial
+            constexpr auto P16B         = 0b01 << 3; // 16 bit polynomial
+            constexpr auto P8B          = 0b10 << 3; // 8 bit polynomial
+            constexpr auto P7B          = 0b11 << 3; // 7 bit polynomial
+
+            constexpr auto RESET        = 1 << 0; // RESET peripheral
+
+            // POL
+            constexpr auto Polynomial   = 0x04C11DB7;
+        }
+    }
+
     namespace DMA{
         constexpr auto DMA1             = 0x40020000;
         constexpr auto DMA2             = 0x40020400;
