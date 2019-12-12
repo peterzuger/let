@@ -255,6 +255,22 @@ namespace let{
         };
 
         /**
+         * @brief configure a pin for Analog use
+         * This function can be used to configure a GPIO pin
+         * for use with an Analog Peripheral
+         *
+         * @tparam P GPIO Port to use
+         * @tparam p GPIO Pin to use
+         * @return the configured pin object(can be discarded)
+         */
+        template<std::uint32_t P, std::uint8_t p>
+        Pin<P, p> ConfigureAnalog(){
+            Pin<P, p> pin;
+            pin.mode(Mode::Analog);
+            return pin;
+        }
+
+        /**
          * @brief configure a pin for alternate use
          * This function can be used to configure a GPIO pin
          * for use with an alternate Peripheral e.g. USART
@@ -262,7 +278,7 @@ namespace let{
          * @tparam P GPIO Port to use
          * @tparam p GPIO Pin to use
          * @param  f alternate function to be configured
-         * @return true on success
+         * @return the configured pin object(can be discarded)
          */
         template<std::uint32_t P, std::uint8_t p>
         Pin<P, p> AlternateFunction(const std::uint8_t f){
