@@ -1,8 +1,8 @@
 /**
- * @file   let/include/RCC.hpp
+ * @file   let/include/RCC/ADC.hpp
  * @author Peter Züger
- * @date   14.08.2018
- * @brief  Reset and Clock Control abstraction
+ * @date   12.11.2019
+ * @brief  Analog to Digital Converter clock
  *
  * This file is part of let (https://gitlab.com/peterzuger/let).
  * Copyright (c) 2019 Peter Züger.
@@ -19,15 +19,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef LET_RCC_HPP
-#define LET_RCC_HPP
+#ifndef LET_RCC_ADC_HPP
+#define LET_RCC_ADC_HPP
 
-#include "RCC/ADC.hpp"
-#include "RCC/CRC.hpp"
-#include "RCC/DMA.hpp"
-#include "RCC/GPIO.hpp"
-#include "RCC/RNG.hpp"
-#include "RCC/SPI.hpp"
-#include "RCC/USART.hpp"
+#include "../HAL.hpp"
+#include "../device/device.hpp"
 
-#endif /* LET_RCC_HPP */
+namespace let{
+    namespace RCC{
+        inline void EnableADC1Clock(){set_mask(RCC + R::APB2ENR, B::ADC1EN);}
+        inline void DisableADC1Clock(){clear_mask(RCC + R::APB2ENR, B::ADC1EN);}
+    }
+}
+
+#endif /* LET_RCC_ADC_HPP */
