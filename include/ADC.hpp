@@ -70,12 +70,14 @@ namespace let{
                 set_mask(A + R::SQR1, conversions << 20);
             }
 
-            void set_sequence(std::uint8_t sequence, std::uint8_t channel){
+            void set_sequence(int sequence, int channel){
                 std::uint32_t addr;
-                /**/ if(sequence <= 6)  {addr = A + R::SQR3; sequence -= 1;}
-                else if(sequence <= 12) {addr = A + R::SQR2; sequence -= 7;}
-                else                    {addr = A + R::SQR1; sequence -= 13;}
+                /**/ if((sequence >= 1) && (sequence <= 6))  {addr = A + R::SQR3; sequence -= 1;}
+                else if((sequence >= 7) && (sequence <= 12)) {addr = A + R::SQR2; sequence -= 7;}
+                else if((sequence >= 13) && (sequence <= 16)){addr = A + R::SQR1; sequence -= 13;}
+                else return;
 
+                if(channel > 0xFF)return;
                 clear_mask(addr, 0x1F << (5*sequence));
                 set_mask(addr, channel << (5*sequence));
             }
