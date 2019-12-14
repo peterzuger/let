@@ -36,7 +36,7 @@ namespace let{
 
         [[noreturn]] void SystemReset(){
             asm volatile ("dsb 0xF":::"memory");
-            memory<std::uint32_t>(SCB+R::AIRCR) |= B::SYSRESETREQ | B::VECTKEY;
+            set_mask(SCB + R::AIRCR, B::SYSRESETREQ | B::VECTKEY);
             asm volatile ("dsb 0xF":::"memory");
             while(1);
         }

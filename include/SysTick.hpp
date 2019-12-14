@@ -28,19 +28,19 @@
 namespace let{
     namespace STK{
         inline void EnableSysTickCounter(){
-            memory<std::uint32_t>(STK+R::CTRL) |= B::ENABLE;
+            set_mask(STK + R::CTRL, B::ENABLE);
         }
 
         inline void DisableSysTickCounter(){
-            memory<std::uint32_t>(STK+R::CTRL) &= ~B::ENABLE;
+            clear_mask(STK + R::CTRL, B::ENABLE);
         }
 
         inline void EnableSysTickException(){
-            memory<std::uint32_t>(STK+R::CTRL) |= B::TICKINT;
+            set_mask(STK + R::CTRL, B::TICKINT);
         }
 
         inline void DisableSysTickException(){
-            memory<std::uint32_t>(STK+R::CTRL) &= ~B::TICKINT;
+            clear_mask(STK + R::CTRL, B::TICKINT);
         }
 
         inline bool Countflag(){

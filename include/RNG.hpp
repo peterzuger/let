@@ -52,7 +52,7 @@ namespace let{
             }
 
             void ResetErrors()noexcept{
-                memory<std::uint32_t>(RNG+R::SR) &= ~(B::SEIS|B::CEIS);
+                clear_mask(RNG + R::SR, B::SEIS | B::CEIS);
             }
 
             std::uint32_t get()noexcept{
@@ -77,11 +77,11 @@ namespace let{
             }
 
             void Enable()noexcept{
-                memory<std::uint32_t>(RNG+R::CR) |= B::RNGEN;
+                set_mask(RNG + R::CR, B::RNGEN);
             }
 
             void Disable()noexcept{
-                memory<std::uint32_t>(RNG+R::CR) &= ~B::RNGEN;
+                clear_mask(RNG + R::CR, B::RNGEN);
             }
         };
     }
