@@ -27,6 +27,7 @@
 
 namespace let{
     namespace FLASH{
+#if defined(STM32F4)
         inline void EnableInstructionCache(){set_mask(FLASH + R::ACR, B::ICEN);}
         inline void DisableInstructionCache(){clear_mask(FLASH + R::ACR, B::ICEN);}
 
@@ -35,6 +36,7 @@ namespace let{
 
         inline void EnablePrefetchBuffer(){set_mask(FLASH + R::ACR, B::PRFTEN);}
         inline void DisablePrefetchBuffer(){clear_mask(FLASH + R::ACR, B::PRFTEN);}
+#endif /* defined(STM32F4) */
 
 
         template<std::uint32_t A>
