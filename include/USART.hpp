@@ -45,7 +45,11 @@ namespace let{
             using value_type = std::uint8_t;
 
             USART(std::size_t baudrate){
+#if defined(STM32H7)
+                SetBaudRate(64000000/baudrate);
+#else
                 SetBaudRate(16000000/baudrate);
+#endif /* defined(STM32H7) */
                 EnableTransmitter();
                 EnableReceiver();
                 Enable();
