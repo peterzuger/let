@@ -608,6 +608,9 @@ namespace let{
             constexpr auto CRCPR        = 0x10;   // CRC polynomial register
             constexpr auto RXCRCR       = 0x14;   // RX CRC register
             constexpr auto TXCRCR       = 0x18;   // TX CRC register
+
+            constexpr auto TXR                    = DR;
+            constexpr auto RXR                    = DR;
         }
 
         namespace B{

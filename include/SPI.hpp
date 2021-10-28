@@ -84,7 +84,11 @@ namespace let{
             }
 
             bool busy(){
+#if defined(STM32H7)
+                return !(memory<std::uint32_t>(A+R::SR) & B::TXC);
+#else
                 return memory<std::uint32_t>(A+R::SR) & B::BSY;
+#endif
             }
 
             void flush()const volatile{
@@ -103,7 +107,7 @@ namespace let{
 
             void write(value_type d)const volatile{
                 while(!empty());
-                memory<value_type>(A+R::DR) = d;
+                memory<value_type>(A+R::TXR) = d;
             }
 
             bool write(value_type d, bool blocking)const volatile{
@@ -112,7 +116,7 @@ namespace let{
                     return true;
                 }else{
                     if(empty()){
-                        memory<value_type>(A+R::DR) = d;
+                        memory<value_type>(A+R::TXR) = d;
                         return true;
                     }else{
                         return false;
@@ -126,7 +130,7 @@ namespace let{
 
             value_type read()const volatile{
                 while(!any());
-                return memory<value_type>(A+R::DR);
+                return memory<value_type>(A+R::RXR);
             }
 
             std::optional<value_type> read(bool blocking){
@@ -134,7 +138,7 @@ namespace let{
                     return std::make_optional(read());
                 }else{
                     if(any()){
-                        return std::make_optional(memory<value_type>(A+R::DR));
+                        return std::make_optional(memory<value_type>(A+R::RXR));
                     }else{
                         return std::nullopt;
                     }

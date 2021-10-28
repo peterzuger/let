@@ -750,6 +750,9 @@ namespace let{
             constexpr auto TXCRCR                 = 0x18;         // TX CRC register
             constexpr auto I2SCFGR                = 0x1C;         // I2S configuration register
             constexpr auto I2SPR                  = 0x20;         // I2S prescaler register
+
+            constexpr auto TXR                    = DR;
+            constexpr auto RXR                    = DR;
         }
 
         namespace B{
