@@ -343,6 +343,9 @@ namespace let{
             constexpr auto X16                    = 0b01 << 8;    //
             constexpr auto X32                    = 0b10 << 8;    //
             constexpr auto X64                    = 0b11 << 8;    //
+            constexpr auto X_MASK                 = 0b11 << 8;    // programming parallelism mask
+            constexpr auto SNR_OFF                = 3;            // sector erase selection number
+            constexpr auto SNR_MASK               = 0xF << 3;     // sector erase selection number
             constexpr auto MER                    = 1 << 2;       // Mass Erase
             constexpr auto SER                    = 1 << 1;       // Sector Erase
             constexpr auto PG                     = 1 << 0;       // Programming

@@ -107,13 +107,12 @@ namespace let{
                 return FlashReader<T>(address);
             }
 
-
             bool locked(){
                 return memory<std::uint32_t>(A+R::CR) & B::LOCK;
             }
 
             void ProgrammingSize(std::size_t bits){
-                memory<std::uint32_t>(A+R::CR) &= ~0x30;
+                memory<std::uint32_t>(A+R::CR) &= ~B::X_MASK;
                 switch(bits){
                 case 8:  memory<std::uint32_t>(A + R::CR) |= B::X8; break;
                 case 16: memory<std::uint32_t>(A + R::CR) |= B::X16;break;
@@ -128,8 +127,8 @@ namespace let{
             void SectorErase(uint8_t sector){
                 while(busy())
                     asm volatile("");
-                memory<std::uint32_t>(A + R::CR) &= ~(0xF<<3);
-                memory<std::uint32_t>(A + R::CR) |= (sector & 0xF) << 3;
+                memory<std::uint32_t>(A + R::CR) &= ~B::SNR_OFF;
+                memory<std::uint32_t>(A + R::CR) |= sector << B::SNR_OFF;
                 memory<std::uint32_t>(A + R::CR) |= B::SER;
             }
 
