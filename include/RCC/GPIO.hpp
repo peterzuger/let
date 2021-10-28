@@ -29,6 +29,8 @@ namespace let{
     namespace RCC{
 #if defined(STM32F4)
         inline constexpr auto GPIOCLK = R::AHB1ENR;
+#elif defined(STM32H7)
+        inline constexpr auto GPIOCLK = R::AHB4ENR;
 #else
         inline constexpr auto GPIOCLK = R::AHB2ENR;
 #endif /* defined(STM32F4) */

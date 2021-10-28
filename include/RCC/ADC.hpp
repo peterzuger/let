@@ -27,8 +27,14 @@
 
 namespace let{
     namespace RCC{
-        inline void EnableADC1Clock(){set_mask(RCC + R::APB2ENR, B::ADC1EN);}
-        inline void DisableADC1Clock(){clear_mask(RCC + R::APB2ENR, B::ADC1EN);}
+#if defined(STM32H7)
+        inline constexpr auto ADCCLK = R::AHB1ENR;
+#else
+        inline constexpr auto ADCCLK = R::APB2ENR;
+#endif /* defined(STM32H7) */
+
+        inline void EnableADC1Clock(){set_mask(RCC + ADCCLK, B::ADC1EN);}
+        inline void DisableADC1Clock(){clear_mask(RCC + ADCCLK, B::ADC1EN);}
     }
 }
 

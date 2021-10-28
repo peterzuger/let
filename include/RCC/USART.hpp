@@ -29,6 +29,8 @@ namespace let{
     namespace RCC{
 #if defined(STM32F4) && !defined(STM32F437xx)
         inline constexpr auto USARTCLK = R::APB1ENR;
+#elif defined(STM32H7)
+        inline constexpr auto USARTCLK = R::APB1LENR;
 #else
         inline constexpr auto USARTCLK = R::APB1ENR1;
 #endif /* defined(STM32F4) */
