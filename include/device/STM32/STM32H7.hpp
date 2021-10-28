@@ -27,7 +27,7 @@
 #elif defined(STM32H753xx) /* STM32H753xx Devices */
 # include "STM32H753xx.hpp"
 #else
-# else Device not defined
+# error Device not defined
 #endif
 
 #endif /* LET_DEVICE_STM32_STM32H7_HPP */
