@@ -89,6 +89,12 @@ namespace let{
                 OutputType(o);
             }
 
+            Pin(Mode m, OType o, Pull pp){
+                mode(m);
+                OutputType(o);
+                PullUpDown(pp);
+            }
+
             Pin(Mode m, Pull pp){
                 mode(m);
                 PullUpDown(pp);
